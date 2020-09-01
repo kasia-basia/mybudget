@@ -1,0 +1,24 @@
+@import "assets/styles/variables";
+
+.wrapper {
+  width: 5em;
+  background: $anchor-navy;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding: 2.5em 0;
+}
+
+.dot {
+  border-radius: 100%;
+  background: $orange;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0.75em 0;
+}
+
+.dot:nth-child(2) {
+  background: $peony;
+}
