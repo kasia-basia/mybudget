@@ -1,0 +1,14 @@
+@import "assets/styles/variables";
+
+.wrapper {
+
+
+}
+
+.rowWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em;
+  border-bottom: 1px solid $slate-gray;
+}
+

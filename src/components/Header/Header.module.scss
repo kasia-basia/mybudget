@@ -1,0 +1,12 @@
+@import "assets/styles/variables";
+
+.wrapper {
+  display: flex;
+  height: 5em;
+  flex-grow: 1;
+}
+
+.heading {
+  color: $primary-blue;
+  font-weight: bold;
+}

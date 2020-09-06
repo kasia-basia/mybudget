@@ -1,15 +1,23 @@
 import React from "react";
-import styles from "./styles.module.scss";
+import "assets/styles/index.scss";
+import styles from "components/App/App.module.scss";
 import Sidebar from "components/Sidebar/Sidebar";
 import ExpensesPanel from "components/ExpensesPanel/ExpensesPanel";
-import "assets/styles/index.scss";
+import Header from "components/Header/Header";
+import FixedCostsPanel from "components/FixedCostsPanel/FixedCostsPanel";
 
 function App() {
   return (
     <div className={styles.wrapper}>
-      <Sidebar/>
+      <Sidebar />
       <div className={styles.content}>
-          <ExpensesPanel/>
+        <div className={styles.contentLeft}>
+          <Header />
+          <FixedCostsPanel />
+        </div>
+        <div className={styles.contentRight}>
+          <ExpensesPanel />
+        </div>
       </div>
     </div>
   );
