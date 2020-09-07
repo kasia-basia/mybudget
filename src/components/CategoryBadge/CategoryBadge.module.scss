@@ -1,0 +1,33 @@
+@import 'assets/styles/variables';
+
+
+.badge {
+  border: 2px solid $slate-gray;
+  font-size: 10px;
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+
+.groceries {
+  border-color: $peony;
+}
+
+.takeout {
+  border-color: $orange;
+}
+
+.supplies {
+  border-color: $sea;
+}
+
+.transport {
+  border-color: $sun;
+}
+
+.clothes {
+  border-color: $plum;
+}
+
+.beauty {
+  border-color: $gold;
+}

@@ -1,21 +1,19 @@
 @import "assets/styles/variables";
 
 .wrapper {
-  //background: white;
   margin-right: 15px;
   border-radius: 7px;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  //position: relative;
-  //font-size: 14px;
-  //width: 100%;
 }
 
 .heading {
   color: $primary-blue;
   font-weight: normal;
   font-size: 15px;
+  margin: 0;
+  height: 35px;
   letter-spacing: 3px;
   text-transform: uppercase;
 }

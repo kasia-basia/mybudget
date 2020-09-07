@@ -1,14 +1,34 @@
 @import "assets/styles/variables";
 
-.wrapper {
-
-
+.tableWrapper {
+  overflow-y: scroll;
 }
 
 .rowWrapper {
   display: flex;
   justify-content: space-between;
-  padding: 0.5em;
+  padding: 0.4em;
+}
+
+.date {
+  color: $primary-blue;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11px;
+  margin: 0.5em 0;
+  padding: 0.8em 0.5em;
   border-bottom: 1px solid $slate-gray;
 }
 
+.name {
+  width: 50%;
+}
+.amount {
+  width: 20%;
+  text-align: center;
+}
+.category {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+}
