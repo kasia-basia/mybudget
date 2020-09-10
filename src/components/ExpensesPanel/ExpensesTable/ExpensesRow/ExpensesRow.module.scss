@@ -1,0 +1,44 @@
+@import "assets/styles/variables";
+
+.rowWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4em;
+}
+
+.name {
+  width: 40%;
+}
+
+.amount {
+  width: 15%;
+  text-align: center;
+}
+
+.category {
+  width: 25%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.icons {
+  display: flex;
+  width: 10%;
+  opacity: 0;
+  transition: opacity 0.1s ease-in;
+
+  svg {
+    width: 15px;
+    path {
+      fill: $primary-blue;
+    }
+  }
+
+  svg:not(last-child) {
+    margin-right: 5px;
+  }
+}
+
+.rowWrapper:hover .icons {
+  opacity: 1;
+}
