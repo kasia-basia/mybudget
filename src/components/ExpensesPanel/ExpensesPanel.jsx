@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import ExpensesTable from "components/ExpensesPanel/ExpensesTable/ExpensesTable";
@@ -7,7 +7,7 @@ import { fetchExpenses } from "actions/expenses";
 import { getExpenses, getSortedExpenses } from "selectors/expenses";
 
 const ExpensesPanel = ({ fetchData, sortedData }) => {
-  React.useEffect(() => {
+  useEffect(() => {
     fetchData();
   }, [fetchData]);
 

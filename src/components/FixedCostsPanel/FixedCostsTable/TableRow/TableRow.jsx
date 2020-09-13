@@ -13,7 +13,7 @@ export const TableRowHeader = () => (
 
 export const TableRow = ({ rowData }) => {
   const { name, amount, dueDate, paid } = rowData;
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState(paid);
 
   const cx = classNames.bind(styles);
 
@@ -25,7 +25,7 @@ export const TableRow = ({ rowData }) => {
       <div className={styles.paid}>
         <input
           type="checkbox"
-          value={status}
+          checked={status}
           onClick={() => setStatus((prevStatus) => !prevStatus)}
         />
       </div>

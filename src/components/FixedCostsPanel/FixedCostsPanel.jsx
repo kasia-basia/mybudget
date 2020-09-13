@@ -1,21 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Panel from "components/Panel/Panel";
-import ExpensesTable from "components/ExpensesPanel/ExpensesTable/ExpensesTable";
 import FixedCostsSummary from "components/FixedCostsPanel/FixedCostsSummary/FixedCostsSummary";
-import styles from "./FixedCostsPanel.module.scss";
 import FixedCostsTable from "components/FixedCostsPanel/FixedCostsTable/FixedCostsTable";
-import sampleData from "./data";
+import { connect } from "react-redux";
+import { fetchCosts } from "actions/fixedCosts";
+import {
+  getFixedCosts,
+  getFixedCostsTotal,
+  getFixedCostsPaid,
+} from "selectors/fixedCosts";
 
-const FixedCostsPanel = () => {
+const FixedCostsPanel = ({ fetchData, data, paid, total }) => {
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   return (
     <Panel heading={"Fixed costs"}>
-      <FixedCostsSummary paid={109.5} total={545.0} />
-        <FixedCostsTable data={sampleData}/>
+      <FixedCostsSummary paid={paid} total={total} />
+      <FixedCostsTable data={data} />
     </Panel>
   );
 };
 
-FixedCostsPanel.propTypes = {};
+FixedCostsPanel.defaultProps = {
+  data: [],
+};
 
-export default FixedCostsPanel;
+FixedCostsPanel.propTypes = {
+  fetchData: PropTypes.func.isRequired,
+  sortedData: PropTypes.array,
+};
+
+const mapStateToProps = (state) => ({
+  data: getFixedCosts(state),
+  paid: getFixedCostsPaid(state),
+  total: getFixedCostsTotal(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchData: () => dispatch(fetchCosts()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FixedCostsPanel);
