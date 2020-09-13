@@ -1,0 +1,22 @@
+@import "assets/styles/variables";
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 50px;
+}
+
+.amountWrapper{
+  text-align: center;
+  .amount {
+    font-size: 1.4em;
+  }
+
+  .amountCaption {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: $primary-blue;
+    font-size: 0.8em;
+    margin-top: 5px;
+  }
+}

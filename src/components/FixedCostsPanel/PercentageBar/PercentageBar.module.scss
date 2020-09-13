@@ -1,0 +1,18 @@
+@import "assets/styles/variables";
+
+.fill,
+.wrapper {
+  border-radius: 30px;
+  height: 15px;
+}
+
+.wrapper {
+  background: $slate-gray;
+  flex-grow: 1;
+  margin: 0 20px;
+}
+
+.fill {
+  background-color: $primary-blue;
+  transition: width 0.2s ease-in;
+}
