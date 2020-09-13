@@ -10,9 +10,18 @@
   background: $slate-gray;
   flex-grow: 1;
   margin: 0 20px;
+  position: relative;
 }
 
 .fill {
   background-color: $primary-blue;
-  transition: width 0.2s ease-in;
+  transition: width 0.3s ease-in-out;
+}
+
+.label {
+  font-size: 0.8em;
+  transition: left 0.3s ease-in-out;
+  transform: translateX(-50%);
+  position: absolute;
+  top: -20px;
 }

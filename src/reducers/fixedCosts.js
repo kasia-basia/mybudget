@@ -7,6 +7,13 @@ const data = (state = [], action) => {
       return [];
     case constants.FETCH_FIXED_COSTS_SUCCESS:
       return action.payload;
+    case constants.SET_BILL_STATUS:
+      const newState = { ...state };
+      newState[action.id] = {
+        ...state[action.id],
+        paid: !state[action.id].paid,
+      };
+      return newState;
     default: {
       return state;
     }

@@ -11,22 +11,20 @@ export const TableRowHeader = () => (
   </div>
 );
 
-export const TableRow = ({ rowData }) => {
-  const { name, amount, dueDate, paid } = rowData;
-  const [status, setStatus] = useState(paid);
-
+export const TableRow = ({ rowData, setBillStatus }) => {
+  const { name, amount, dueDate, paid, id } = rowData;
   const cx = classNames.bind(styles);
 
   return (
-    <div className={cx({ wrapper: true, status: status })}>
+    <div className={cx({ wrapper: true, status: paid })}>
       <div className={styles.name}> {name} </div>
       <div className={styles.amount}> {amount} PLN</div>
       <div className={styles.due}> {dueDate} </div>
       <div className={styles.paid}>
         <input
           type="checkbox"
-          checked={status}
-          onClick={() => setStatus((prevStatus) => !prevStatus)}
+          checked={paid}
+          onClick={() => setBillStatus(id)}
         />
       </div>
     </div>

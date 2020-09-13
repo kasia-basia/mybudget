@@ -6,17 +6,19 @@ import {
 } from "components/FixedCostsPanel/FixedCostsTable/TableRow/TableRow";
 import styles from "./FixedCostsTable.module.scss";
 
-const FixedCostsTable = ({ data }) => {
+const FixedCostsTable = ({ data, setBillStatus }) => {
   return (
     <div className={styles.wrapper}>
       <TableRowHeader />
-      {data.map((el, i) => (
-        <TableRow rowData={el} key={i} />
+      {data.map((el) => (
+        <TableRow rowData={el} key={el.id} setBillStatus={setBillStatus} />
       ))}
     </div>
   );
 };
 
-FixedCostsTable.propTypes = {};
+FixedCostsTable.propTypes = {
+  setBillStatus: PropTypes.func,
+};
 
 export default FixedCostsTable;

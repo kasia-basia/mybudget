@@ -11,10 +11,15 @@ export const fetchCosts = () => (dispatch) => {
   docRef
     .get()
     .then((data) => {
-      const obj = data.docs.map((doc) => doc.data());
+      let result = {};
+      data.docs.forEach((doc) => {
+        const data = doc.data();
+        const id = doc.id;
+        result[id] = data;
+      });
       dispatch({
         type: c.FETCH_FIXED_COSTS_SUCCESS,
-        payload: obj,
+        payload: result,
       });
     })
     .catch((error) => {
@@ -24,3 +29,8 @@ export const fetchCosts = () => (dispatch) => {
       });
     });
 };
+
+export const setStatus = (id) => ({
+  type: c.SET_BILL_STATUS,
+  id,
+});
