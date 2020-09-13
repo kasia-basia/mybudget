@@ -1,4 +1,4 @@
-const budget = (state = false, action) => {
+const expenses = (state = false, action) => {
   switch (action.type) {
     default: {
       return state;
@@ -6,4 +6,4 @@ const budget = (state = false, action) => {
   }
 };
 
-export default budget;
+export default expenses;
