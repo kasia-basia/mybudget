@@ -2,48 +2,37 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import ExpensesTable from "components/ExpensesPanel/ExpensesTable/ExpensesTable";
-import AddButton from "components/ExpensesPanel/AddButton/AddButton";
-import mockData from "./data";
-import styles from "./ExpensesPanel.module.scss";
 import Panel from "components/Panel/Panel";
-import firebase from "firebaseConfig";
+import { fetchExpenses } from "actions/expenses";
+import { getExpenses, getSortedExpenses } from "selectors/expenses";
 
-const ExpensesPanel = () => {
-  const [expenses, setExpenses] = React.useState([]);
-
-  const fetchData = async () => {
-    const db = firebase.firestore();
-    const docRef = db.collection("expenses").doc("november2020");
-
-    docRef
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          setExpenses(doc.data());
-        } else {
-          console.log("No such document!");
-        }
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-  };
-
+const ExpensesPanel = ({ fetchData, sortedData }) => {
   React.useEffect(() => {
     fetchData();
-  }, []);
-
-  console.log(expenses);
+  }, [fetchData]);
 
   return (
     <Panel heading={"Daily expenses"}>
-      <ExpensesTable data={expenses} />
+      <ExpensesTable data={sortedData} />
     </Panel>
   );
 };
 
-ExpensesPanel.propTypes = {};
+ExpensesPanel.defaultProps = {
+  data: [],
+};
 
-const mapDispatchToProps = (state) => {};
+ExpensesPanel.propTypes = {
+  fetchData: PropTypes.func.isRequired,
+  sortedData: PropTypes.array,
+};
 
-export default connect(null, mapDispatchToProps)(ExpensesPanel);
+const mapStateToProps = (state) => ({
+  sortedData: getSortedExpenses(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchData: (id) => dispatch(fetchExpenses(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpensesPanel);
