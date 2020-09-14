@@ -10,6 +10,7 @@
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
     "firebase": "^7.20.0",
+    "firestore-export-import": "^0.7.0",
     "node-sass": "^4.14.1",
     "prettier": "^2.1.1",
     "react": "^16.13.1",

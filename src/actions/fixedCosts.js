@@ -11,7 +11,7 @@ export const fetchCosts = () => (dispatch) => {
   docRef
     .get()
     .then((data) => {
-      let result = {};
+      const result = {};
       data.docs.forEach((doc) => {
         const data = doc.data();
         const id = doc.id;

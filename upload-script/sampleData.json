@@ -1,0 +1,113 @@
+{
+  "expenses": {
+    "5f551b5632624040e2fe75d4": {
+      "timestamp": "1605830400",
+      "category": "supplies",
+      "name": "dolor cupidatat",
+      "amount": "27.93"
+    },
+    "5f551b56dd0857399b527c03": {
+      "timestamp": "1605830234",
+      "category": "takeout",
+      "name": "ipsum in",
+      "amount": "25.26"
+    },
+    "5f551b567c23c09793ac7c3f": {
+      "timestamp": "1605398400",
+      "category": "beauty",
+      "name": "voluptate nisi",
+      "amount": "52.6"
+    },
+    "5f551b5677a24c485f427840": {
+      "timestamp": "1605312000",
+      "category": "takeout",
+      "name": "Lorem ipsum",
+      "amount": "72.2"
+    },
+    "5f551b569f9ee0ff3d3ff0cc": {
+      "category": "clothes",
+      "name": "nostrud eiusmod",
+      "amount": "39.33"
+    },
+    "5f551b56d2cc31a87fec65f5": {
+      "timestamp": "1605313400",
+      "category": "takeout",
+      "name": "cillum laborum",
+      "amount": "47.86"
+    },
+    "5f551b56d72545e08c5ebf83": {
+      "timestamp": "1605225600",
+      "category": "takeout",
+      "name": "occaecat sit",
+      "amount": "16.97"
+    },
+    "5f551b56d09dab6b9042ab38": {
+      "timestamp": "1604966400",
+      "category": "groceries",
+      "name": "sunt tempor",
+      "amount": "51.83"
+    },
+    "5f551b56df372070811a86dd": {
+      "timestamp": "1604880000",
+      "category": "takeout",
+      "name": "et culpa",
+      "amount": "78.78"
+    },
+    "5f551b56c4794cc699eceb18": {
+      "timestamp": "1604883000",
+      "category": "clothes",
+      "name": "fugiat est",
+      "amount": "93.5"
+    },
+    "5f551b56cb9f23bf3d95c15f": {
+      "timestamp": "1604793600",
+      "category": "takeout",
+      "name": "do cupidatat",
+      "amount": "24.58"
+    },
+    "5f551b566911a00d0159c529": {
+      "timestamp": "1604707200",
+      "category": "groceries",
+      "name": "et nulla",
+      "amount": "13.93"
+    },
+    "5f551b5632624040e2fe7534d": {
+      "timestamp": "1609372800",
+      "category": "supplies",
+      "name": "dolor cupidatat",
+      "amount": "27.93"
+    },
+    "5f551b56dd0857399b527c01": {
+      "timestamp": "1609374200",
+      "category": "takeout",
+      "name": "ipsum in",
+      "amount": "25.26"
+    },
+    "5f551b5632624040e43e75d4": {
+      "timestamp": "1607990400",
+      "category": "supplies",
+      "name": "dolor cupidatat",
+      "amount": "27.93"
+    }
+  },
+  "fixedCosts": {
+    "a345829465hd": {
+      "name": "Netflix",
+      "amount": 45,
+      "dueDate": "1607990400",
+      "paid": true
+    },
+    "da4jg0idf4gs": {
+      "name": "Electricity",
+      "amount": 12,
+      "dueDate": "1607990400",
+      "paid": false
+    },
+    "2384rhf9dug9093": {
+      "name": "Electricity",
+      "amount": 12,
+      "dueDate": "1607940400",
+      "paid": false
+    }
+  }
+}
