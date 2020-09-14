@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import ExpensesTable from "components/ExpensesPanel/ExpensesTable/ExpensesTable";
 import Panel from "components/Panel/Panel";
 import { fetchExpenses } from "actions/monthOverview";
-import { getExpenses, getSortedExpenses } from "selectors/monthOverview";
+import { getExpenses, getExpensesByDay } from "selectors/monthOverview";
 
 const ExpensesPanel = ({ fetchData, sortedData }) => {
   useEffect(() => {
@@ -28,7 +28,7 @@ ExpensesPanel.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  sortedData: getSortedExpenses(state),
+  sortedData: getExpensesByDay(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

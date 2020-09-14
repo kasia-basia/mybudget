@@ -20,16 +20,18 @@ DateRow.propTypes = { date: PropTypes.string };
 
 const ExpensesTable = ({ data }) => {
   const { windowHeight } = useWindowSize();
-
+  console.log(data);
   return (
     <div
       style={{ height: `${windowHeight - 150}px` }}
       className={styles.tableWrapper}
     >
-      {Object.entries(data).map(([id, expense]) => (
+      {Object.entries(data).map(([timestamp, expenses]) => (
         <>
-          <DateRow date={expense.timestamp} />
-          <ExpenseRow key={id} rowData={expense} />
+          <DateRow date={timestamp} />
+          {expenses.map((el) => (
+            <ExpenseRow key={el.id} rowData={el} />
+          ))}
         </>
       ))}
       <AddButton />
