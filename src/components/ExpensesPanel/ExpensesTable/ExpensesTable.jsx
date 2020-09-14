@@ -20,7 +20,7 @@ DateRow.propTypes = { date: PropTypes.string };
 
 const ExpensesTable = ({ data }) => {
   const { windowHeight } = useWindowSize();
-  console.log(data);
+
   return (
     <div
       style={{ height: `${windowHeight - 150}px` }}

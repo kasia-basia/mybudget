@@ -1,0 +1,53 @@
+@import "assets/styles/variables";
+$checkbox-height: 15px;
+
+.toggle {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+// horizontal slider
+label {
+  cursor: pointer;
+  width: 28px;
+  height: $checkbox-height/2;
+  background: #ccc;
+  display: block;
+  border-radius: 20px;
+  position: relative;
+}
+
+// white dot
+label:after {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: $checkbox-height;
+  height: $checkbox-height;
+  background: white;
+  box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.2);
+  border: solid 1px #ccc;
+  border-radius: $checkbox-height;
+  transition: 0.3s ease-out;
+}
+
+// white dot hover
+label:hover:after {
+  border: 1px solid $primary-blue;
+  box-shadow: 1px 1px 5px 0 rgba(62, 102, 246, 0.3);
+}
+
+// checked dot
+input:checked + label {
+  background: lighten($primary-blue, 25%);
+}
+
+// checked horizontal slider
+input:checked + label:after {
+  left: $checkbox-height;
+  background-color: $primary-blue;
+  border: solid 1px $primary-blue;
+}

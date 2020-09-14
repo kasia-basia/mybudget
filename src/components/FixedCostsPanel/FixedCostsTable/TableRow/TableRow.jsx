@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classNames from "classnames/bind";
 import fromUnixTime from "date-fns/fromUnixTime";
 import format from "date-fns/format";
+import Check from "components/Check/Check";
 import styles from "components/FixedCostsPanel/FixedCostsTable/TableRow/TableRow.module.scss";
 
 export const TableRowHeader = () => (
@@ -24,10 +25,12 @@ export const TableRow = ({ rowData, setBillStatus }) => {
       <div className={styles.amount}> {amount} PLN</div>
       <div className={styles.due}> {formattedDate} </div>
       <div className={styles.paid}>
-        <input
-          type="checkbox"
+        <Check
           checked={paid}
-          onClick={() => setBillStatus(id)}
+          id={`checkbox_${id}`}
+          onClick={() => {
+            setBillStatus(id);
+          }}
         />
       </div>
     </div>
