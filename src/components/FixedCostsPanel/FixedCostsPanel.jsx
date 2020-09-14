@@ -4,12 +4,12 @@ import Panel from "components/Panel/Panel";
 import FixedCostsSummary from "components/FixedCostsPanel/FixedCostsSummary/FixedCostsSummary";
 import FixedCostsTable from "components/FixedCostsPanel/FixedCostsTable/FixedCostsTable";
 import { connect } from "react-redux";
-import { fetchCosts, setStatus } from "actions/fixedCosts";
+import { fetchCosts, setStatus } from "actions/monthOverview";
 import {
   getSortedFixedCosts,
   getFixedCostsTotal,
   getFixedCostsPaid,
-} from "selectors/fixedCosts";
+} from "selectors/monthOverview";
 
 const FixedCostsPanel = ({ fetchData, data, paid, total, setBillStatus }) => {
   useEffect(() => {
