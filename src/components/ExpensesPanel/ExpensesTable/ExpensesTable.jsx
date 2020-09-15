@@ -34,7 +34,6 @@ const ExpensesTable = ({ data }) => {
           ))}
         </>
       ))}
-      <AddButton />
     </div>
   );
 };

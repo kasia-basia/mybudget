@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import ExpensesTable from "components/ExpensesPanel/ExpensesTable/ExpensesTable";
 import Panel from "components/Panel/Panel";
+import AddButton from "components/ExpensesPanel/AddButton/AddButton";
 import { fetchExpenses } from "actions/monthOverview";
 import {
   getExpenses,
@@ -18,6 +19,7 @@ const ExpensesPanel = ({ fetchData, sortedData, isLoading }) => {
   return (
     <Panel heading={"Daily expenses"} isLoading={isLoading}>
       <ExpensesTable data={sortedData} />
+      <AddButton />
     </Panel>
   );
 };

@@ -1,15 +1,24 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
+import Modal from "components/Modal/Modal";
 import styles from "./AddButton.module.scss";
 
 const AddButton = () => {
+  const [show, setShow] = useState(false);
   return (
     <div className={styles.wrapper}>
-      <button onClick={() => {console.log('+');}}>+</button>
+      <button
+        className={styles.button}
+        onClick={() => {
+          setShow(true);
+        }}
+      >
+        +
+      </button>
+      <Modal show={show} setShow={setShow}>
+        This is modal text!
+      </Modal>
     </div>
   );
 };
-
-AddButton.propTypes = {};
 
 export default AddButton;
