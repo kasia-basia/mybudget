@@ -9,15 +9,23 @@ import {
   getSortedFixedCosts,
   getFixedCostsTotal,
   getFixedCostsPaid,
+  getLoadingState,
 } from "selectors/monthOverview";
 
-const FixedCostsPanel = ({ fetchData, data, paid, total, setBillStatus }) => {
+const FixedCostsPanel = ({
+  fetchData,
+  data,
+  paid,
+  total,
+  setBillStatus,
+  isLoading,
+}) => {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
   return (
-    <Panel heading={"Fixed costs"}>
+    <Panel heading={"Fixed costs"} isLoading={isLoading}>
       <FixedCostsSummary paid={paid} total={total} />
       <FixedCostsTable data={data} setBillStatus={setBillStatus} />
     </Panel>
@@ -26,17 +34,20 @@ const FixedCostsPanel = ({ fetchData, data, paid, total, setBillStatus }) => {
 
 FixedCostsPanel.defaultProps = {
   data: [],
+  isLoading: false,
 };
 
 FixedCostsPanel.propTypes = {
   fetchData: PropTypes.func.isRequired,
   sortedData: PropTypes.array,
+  isLoading: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
   data: getSortedFixedCosts(state),
   paid: getFixedCostsPaid(state),
   total: getFixedCostsTotal(state),
+  isLoading: getLoadingState(state, "fixedCosts"),
 });
 
 const mapDispatchToProps = (dispatch) => ({

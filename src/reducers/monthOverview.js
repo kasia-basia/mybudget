@@ -1,15 +1,37 @@
-import * as constants from "constants/monthOverwiew"
+import * as constants from "constants/monthOverwiew";
 import { combineReducers } from "redux";
+
+
+const loadingReducer = (prefix, initialState) => (
+  state = initialState,
+  action
+) => {
+  switch (action.type) {
+    case prefix:
+      return true;
+    case `${prefix}_ERROR`:
+    case `${prefix}_SUCCESS`:
+      return false;
+    default:
+      return state;
+  }
+};
+
+const createLoadingReducer = (prefix, initialState) =>
+  loadingReducer(prefix, initialState);
+
+const expensesLoading = createLoadingReducer(constants.FETCH_EXPENSES, false);
+const fixedCostsLoading = createLoadingReducer(constants.FETCH_FIXED_COSTS, false);
 
 const expensesData = (state = [], action) => {
   switch (action.type) {
-    case constants.FETCH_EXPENSES:
-      return [];
-    case constants.FETCH_EXPENSES_SUCCESS:
-      return action.payload;
-    default: {
-      return state;
-    }
+  case constants.FETCH_EXPENSES:
+    return [];
+  case constants.FETCH_EXPENSES_SUCCESS:
+    return action.payload;
+  default: {
+    return state;
+  }
   }
 };
 
@@ -32,5 +54,12 @@ const fixedCostsData = (state = [], action) => {
   }
 };
 
-export const fixedCosts =  combineReducers({ data: fixedCostsData });
-export const expenses =  combineReducers({ data: expensesData });
+export const fixedCosts = combineReducers({
+  data: fixedCostsData,
+  isLoading: fixedCostsLoading,
+});
+
+export const expenses = combineReducers({
+  data: expensesData,
+  isLoading: expensesLoading,
+});

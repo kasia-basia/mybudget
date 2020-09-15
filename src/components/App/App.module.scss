@@ -13,10 +13,10 @@
 .contentLeft {
   display: flex;
   flex-direction: column;
-  flex-grow: 7;
+  width: 45%;
 }
 
 .contentRight {
-  flex-grow: 5  ;
   display: flex;
+  width: 55%;
 }

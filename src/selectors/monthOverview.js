@@ -5,6 +5,8 @@ import { isSameDay, fromUnixTime } from "date-fns";
 const _getExpenses = (state) => state.expenses.data;
 const _getFixedCosts = (state) => state.fixedCosts.data;
 
+export const getLoadingState = (state, key) => state[key].isLoading;
+
 export const getSortedExpenses = createSelector(_getExpenses, (data) => {
   const arr = Object.entries(data).map(([id, details]) => ({
     id: id,
