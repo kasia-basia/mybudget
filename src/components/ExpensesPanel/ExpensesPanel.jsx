@@ -5,11 +5,7 @@ import ExpensesTable from "components/ExpensesPanel/ExpensesTable/ExpensesTable"
 import Panel from "components/Panel/Panel";
 import AddButton from "components/ExpensesPanel/AddButton/AddButton";
 import { fetchExpenses } from "actions/monthOverview";
-import {
-  getExpenses,
-  getExpensesByDay,
-  getLoadingState,
-} from "selectors/monthOverview";
+import { getExpensesByDay, getLoadingState } from "selectors/monthOverview";
 
 const ExpensesPanel = ({ fetchData, sortedData, isLoading }) => {
   useEffect(() => {

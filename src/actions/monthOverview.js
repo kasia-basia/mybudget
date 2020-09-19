@@ -1,5 +1,7 @@
 import * as c from "constants/monthOverwiew";
 import firebase from "firebaseConfig";
+import getUnixTime from "date-fns/getUnixTime";
+import parseISO from "date-fns/parseISO";
 
 export const fetchExpenses = (
   monthBeginning = "1604188800",
@@ -34,37 +36,62 @@ export const fetchExpenses = (
     });
 };
 
-
 export const fetchCosts = () => (dispatch) => {
-    dispatch({
-        type: c.FETCH_FIXED_COSTS,
-    });
-    const db = firebase.firestore();
-    const docRef = db.collection("fixedCosts");
+  dispatch({
+    type: c.FETCH_FIXED_COSTS,
+  });
+  const db = firebase.firestore();
+  const docRef = db.collection("fixedCosts");
 
-    docRef
-        .get()
-        .then((data) => {
-            const result = {};
-            data.docs.forEach((doc) => {
-                const data = doc.data();
-                const id = doc.id;
-                result[id] = data;
-            });
-            dispatch({
-                type: c.FETCH_FIXED_COSTS_SUCCESS,
-                payload: result,
-            });
-        })
-        .catch((error) => {
-            dispatch({
-                type: c.FETCH_FIXED_COSTS_ERROR,
-                payload: error,
-            });
-        });
+  docRef
+    .get()
+    .then((data) => {
+      const result = {};
+      data.docs.forEach((doc) => {
+        const data = doc.data();
+        const id = doc.id;
+        result[id] = data;
+      });
+      dispatch({
+        type: c.FETCH_FIXED_COSTS_SUCCESS,
+        payload: result,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: c.FETCH_FIXED_COSTS_ERROR,
+        payload: error,
+      });
+    });
 };
 
 export const setStatus = (id) => ({
-    type: c.SET_BILL_STATUS,
-    id,
+  type: c.SET_BILL_STATUS,
+  id,
 });
+
+export const addExpense = (expense) => (dispatch) => {
+
+  dispatch({
+    type: c.ADD_EXPENSE,
+  });
+
+  const db = firebase.firestore();
+  const docRef = db.collection("expenses");
+
+  docRef
+    .add(expense)
+    .then((data) => {
+      // TODO only add to state when date is in the current month
+      dispatch({
+        type: c.ADD_EXPENSE_SUCCESS,
+        payload: { ...expense, id: data.id },
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: c.ADD_EXPENSE_ERROR,
+        payload: error,
+      });
+    });
+};

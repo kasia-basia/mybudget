@@ -1,17 +1,10 @@
 import React from "react";
 import styles from "./Modal.module.scss";
 
-const Modal = ({ children, show, setShow }) => {
+const Modal = ({ children, show }) => {
   return show ? (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <button
-          className={styles.modalClose}
-          type="button"
-          onClick={() => setShow(false)}
-        >
-          X
-        </button>
         <div className={styles.modalBody}>{children}</div>
       </div>
     </div>

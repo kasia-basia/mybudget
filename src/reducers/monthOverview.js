@@ -1,6 +1,5 @@
-import * as constants from "constants/monthOverwiew";
+import * as c from "constants/monthOverwiew";
 import { combineReducers } from "redux";
-
 
 const loadingReducer = (prefix, initialState) => (
   state = initialState,
@@ -20,28 +19,32 @@ const loadingReducer = (prefix, initialState) => (
 const createLoadingReducer = (prefix, initialState) =>
   loadingReducer(prefix, initialState);
 
-const expensesLoading = createLoadingReducer(constants.FETCH_EXPENSES, false);
-const fixedCostsLoading = createLoadingReducer(constants.FETCH_FIXED_COSTS, false);
+const expensesLoading = createLoadingReducer(c.FETCH_EXPENSES, false);
+const fixedCostsLoading = createLoadingReducer(c.FETCH_FIXED_COSTS, false);
 
-const expensesData = (state = [], action) => {
+const expensesData = (state = {}, action) => {
   switch (action.type) {
-  case constants.FETCH_EXPENSES:
-    return [];
-  case constants.FETCH_EXPENSES_SUCCESS:
-    return action.payload;
-  default: {
-    return state;
-  }
+    case c.FETCH_EXPENSES:
+      return [];
+    case c.FETCH_EXPENSES_SUCCESS:
+      return action.payload;
+    case c.ADD_EXPENSE_SUCCESS:
+      const newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      return newState;
+    default: {
+      return state;
+    }
   }
 };
 
 const fixedCostsData = (state = [], action) => {
   switch (action.type) {
-    case constants.FETCH_FIXED_COSTS:
+    case c.FETCH_FIXED_COSTS:
       return [];
-    case constants.FETCH_FIXED_COSTS_SUCCESS:
+    case c.FETCH_FIXED_COSTS_SUCCESS:
       return action.payload;
-    case constants.SET_BILL_STATUS:
+    case c.SET_BILL_STATUS:
       const newState = { ...state };
       newState[action.id] = {
         ...state[action.id],

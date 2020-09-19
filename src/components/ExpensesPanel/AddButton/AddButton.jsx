@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "components/Modal/Modal";
 import styles from "./AddButton.module.scss";
+import AddExpenses from "components/AddExpenses/AddExpenses";
 
 const AddButton = () => {
   const [show, setShow] = useState(false);
@@ -14,8 +15,8 @@ const AddButton = () => {
       >
         +
       </button>
-      <Modal show={show} setShow={setShow}>
-        This is modal text!
+      <Modal show={show}>
+        <AddExpenses setShow={setShow} />
       </Modal>
     </div>
   );

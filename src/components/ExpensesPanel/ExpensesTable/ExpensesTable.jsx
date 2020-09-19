@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import format from "date-fns/format";
 import fromUnixTime from "date-fns/fromUnixTime";
 import useWindowSize from "utils/useWindowSize";
-import AddButton from "components/ExpensesPanel/AddButton/AddButton";
 import ExpenseRow from "components/ExpensesPanel/ExpensesTable/ExpensesRow/ExpensesRow";
 import styles from "./ExpensesTable.module.scss";
 
