@@ -2,95 +2,61 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
-import DatePicker from "components/DatePicker/DatePicker";
-import { useForm, Controller } from "react-hook-form";
+import { Row, Col, Button, Space } from "antd";
+import { useForm } from "react-hook-form";
 import { addExpense } from "actions/monthOverview";
-import cx from "classnames";
 import styles from "./AddExpenses.module.scss";
-
-const FormRow = ({ register, control }) => {
-  return (
-    <div className={styles.formRow}>
-      <input
-        name={"name"}
-        className={cx(styles.input, styles.name)}
-        type={"text"}
-        ref={register({ required: true })}
-      />
-      <Controller
-        as={<DatePicker />}
-        name="timestamp"
-        control={control}
-        defaultValue=""
-      />
-
-      <input
-        name={"amount"}
-        className={cx(styles.input, styles.amount)}
-        type={"number"}
-        step={"0.01"}
-        ref={register({ required: true })}
-      />
-      <input
-        name={"category"}
-        className={cx(styles.input, styles.category)}
-        type={"text"}
-        ref={register}
-      />
-    </div>
-  );
-};
+import FormRow from "./FormRow/FormRow";
 
 const AddExpenses = ({ setShow, onAddExpense }) => {
   const { handleSubmit, errors, register, control } = useForm();
   const onSubmit = (data) => {
     data.timestamp = dayjs(data.timestamp).unix().toString();
-    console.log(data);
-    // onAddExpense(data);
-    // setShow(false);
+    onAddExpense(data);
+    setShow(false);
   };
 
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.heading}>Add expenses</h1>
       <div className={styles.form}>
-        <div className={styles.formHeading}>
-          <div className={styles.name}>Name</div>
-          <div className={styles.timestamp}>Date</div>
-          <div className={styles.amount}>Value</div>
-          <div className={styles.category}>Category</div>
-        </div>
+        <Row gutter={[8, 8]}>
+          <Col span={6}>Name</Col>
+          <Col span={6}>Date</Col>
+          <Col span={6}>Value</Col>
+          <Col span={6}>Category</Col>
+        </Row>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormRow register={register} control={control} />
           <div className={styles.errors}>
-            {errors.name && (
-              <span className={styles.error}>Name is required. </span>
-            )}
-            {errors.timestamp && (
-              <span className={styles.error}>Date is required. </span>
-            )}
-            {errors.amount && (
-              <span className={styles.error}>Value is required. </span>
-            )}
+            {errors.name && <span>Name is required. </span>}
+            {errors.timestamp && <span>Date is required. </span>}
+            {errors.amount && <span>Value is required. </span>}
           </div>
-          <div className={styles.formButtons}>
-            <button
-              className={styles.cancelButton}
-              onClick={() => setShow(false)}
-            >
-              Cancel
-            </button>
-            <button type={"submit"} className={styles.saveButton}>
-              Save
-            </button>
-          </div>
+          <Row justify={"end"} gutter={8}>
+            <Space>
+              <Button
+                type="default"
+                shape="round"
+                onClick={() => setShow(false)}
+              >
+                Cancel
+              </Button>
+              <Button type="primary" shape="round" htmlType="submit">
+                Save
+              </Button>
+            </Space>
+          </Row>
         </form>
       </div>
     </div>
   );
 };
 
-AddExpenses.propTypes = {};
+AddExpenses.propTypes = {
+  setShow: PropTypes.func,
+  onAddExpense: PropTypes.func,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onAddExpense: (expense) => dispatch(addExpense(expense)),

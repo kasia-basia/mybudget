@@ -43,60 +43,7 @@
   }
 }
 
-.name {
-  width: 23%;
-}
-
-.timestamp {
-  width: 23%;
-}
-
-input.timestamp{
-  width: calc(100% - 10px);
-}
-
-.amount {
-  width: 23%;
-}
-
-.category {
-  width: 30%;
-}
-
 .errors {
   padding: 5px;
   height: 2em;
-}
-
-.formButtons {
-  border-top: 1px solid $slate-gray;
-  padding-top: 20px;
-  display: flex;
-  justify-content: flex-end;
-
-  button {
-    background: transparent;
-    border-radius: 30px;
-    padding: 10px 30px;
-    border: 2px solid $primary-blue;
-    transition: background-color 0.2s ease-in-out;
-  }
-
-  .cancelButton {
-    color: $primary-blue;
-    margin-right: 10px;
-
-    &:hover {
-      color: $dark-blue;
-    }
-  }
-
-  .saveButton {
-    background-color: $primary-blue;
-    color: white;
-
-    &:hover {
-      background-color: $dark-blue;
-    }
-  }
 }
