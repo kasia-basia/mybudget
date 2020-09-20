@@ -7,10 +7,8 @@ import AddButton from "components/ExpensesPanel/AddButton/AddButton";
 import { fetchExpenses } from "actions/monthOverview";
 import { fetchCategories } from "actions/categories";
 import { getExpensesByDay, getLoadingState } from "selectors/monthOverview";
-import { getCategories } from "selectors/categories";
 
 const ExpensesPanel = ({
-  categories,
   onFetchData,
   onFetchCategories,
   sortedData,

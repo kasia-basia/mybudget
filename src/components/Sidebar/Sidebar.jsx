@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import styles from "./styles.module.scss";
 
 const Sidebar = () => {
@@ -12,8 +10,4 @@ const Sidebar = () => {
   );
 };
 
-Sidebar.propTypes = {};
-
-const mapStateToProps = (state) => ({});
-
-export default connect(mapStateToProps)(Sidebar);
+export default Sidebar;

@@ -1,5 +1,6 @@
 import * as c from "constants/monthOverwiew";
 import firebase from "firebaseConfig";
+import { message } from "antd";
 
 export const fetchExpenses = (
   monthBeginning = "1604188800",
@@ -84,6 +85,7 @@ export const addExpense = (expense) => (dispatch) => {
         type: c.ADD_EXPENSE_SUCCESS,
         payload: { ...expense, id: data.id },
       });
+      message.success("Item added", 2);
     })
     .catch((error) => {
       dispatch({
@@ -109,6 +111,7 @@ export const deleteExpense = (id) => (dispatch) => {
         type: c.DELETE_EXPENSE_SUCCESS,
         payload: { id },
       });
+      message.success("Item deleted", 2);
     })
     .catch((error) => {
       dispatch({

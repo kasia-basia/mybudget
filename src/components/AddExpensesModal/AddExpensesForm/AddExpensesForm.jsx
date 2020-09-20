@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Row } from "antd";
 import FormRow from "components/AddExpensesModal/FormRow/FormRow";
+import Errors from "components/AddExpensesModal/Errors/Errors";
 import styles from "components/AddExpensesModal/AddExpensesModal.module.scss";
 
 const AddExpensesForm = ({
@@ -8,7 +9,7 @@ const AddExpensesForm = ({
   onSubmit,
   control,
   errors,
-    categoryOptions,
+  categoryOptions,
 }) => (
   <div className={styles.form}>
     <Row gutter={[8, 8]}>
@@ -19,11 +20,7 @@ const AddExpensesForm = ({
     </Row>
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormRow options={categoryOptions} control={control} />
-      <div className={styles.errors}>
-        {errors.name && <span>Name is required. </span>}
-        {errors.timestamp && <span>Date is required. </span>}
-        {errors.amount && <span>Value is required. </span>}
-      </div>
+      <Errors errors={errors} />
     </form>
   </div>
 );

@@ -10,7 +10,6 @@ import { deleteExpense } from "actions/monthOverview";
 
 const ExpenseRow = ({ rowData, categories, onDeleteExpense }) => {
   const { name, amount, category, id } = rowData;
-  console.log(rowData);
 
   return (
     <div className={styles.rowWrapper}>
@@ -35,7 +34,10 @@ const ExpenseRow = ({ rowData, categories, onDeleteExpense }) => {
               shape="circle"
               type="dashed"
               icon={<DeleteOutlined />}
-              onClick={() => onDeleteExpense(id)}
+              onClick={() => {
+                onDeleteExpense(id);
+                // message.success("Item deleted", 2);
+              }}
             />
           </Tooltip>
         </Space>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./AddButton.module.scss";
 import AddExpenses from "components/AddExpensesModal/AddExpensesModal";
-import { Modal, Button, Tooltip } from "antd";
+import { Button, Tooltip } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 const AddButton = () => {
