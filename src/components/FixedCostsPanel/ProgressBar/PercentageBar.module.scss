@@ -18,6 +18,14 @@
   transition: width 0.3s ease-in-out;
 }
 
+.completed {
+  background-image: linear-gradient(
+    to right,
+    $primary-blue 0%,
+    rgb(135, 208, 104) 100%
+  );
+}
+
 .label {
   font-size: 0.8em;
   transition: left 0.3s ease-in-out;

@@ -1,20 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./PercentageBar.module.scss";
+import classNames from "classnames/bind";
 
-const PercentageBar = ({ value }) => {
+const cx = classNames.bind(styles);
+
+const ProgressBar = ({ value }) => {
   return (
     <div className={styles.wrapper}>
       <span className={styles.label} style={{ left: `${value}%` }}>
         {Math.round(value)}%
       </span>
-      <div className={styles.fill} style={{ width: `${value}%` }} />
+      <div
+        className={cx({ fill: true, completed: value === 100 })}
+        style={{ width: `${value}%` }}
+      />
     </div>
   );
 };
 
-PercentageBar.propTypes = {
+ProgressBar.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default PercentageBar;
+export default ProgressBar;

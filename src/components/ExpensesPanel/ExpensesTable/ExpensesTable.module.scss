@@ -2,14 +2,29 @@
 
 .tableWrapper {
   overflow-y: scroll;
+
+  & > * {
+    padding: 0.8em 0.5em;
+
+  }
 }
 
 .date {
+  width: 20%;
   color: $primary-blue;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 11px;
-  margin: 0.5em 0;
-  padding: 0.8em 0.5em;
-  border-bottom: 1px solid $slate-gray;
+  margin-right: 10px;
+}
+
+.rowWrapper {
+  border-top: 1px solid $slate-gray;
+  display: flex;
+}
+
+.dailyExpenses {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }

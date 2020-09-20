@@ -1,23 +1,20 @@
-$slate-gray: #F5F6FA;
+$slate-gray: #f5f6fa;
 //$primary-blue: #4D85FF;
 $primary-blue: #1890ff;
-$dark-blue: #2C6AED;
+$dark-blue: #2c6aed;
 $graphite: #333333;
-$text: #6F6F6F;
+$text: #6f6f6f;
 $text-light: #dedede;
 
-$sun: #FECD40;
+$sun: #fecd40;
 $gold: #f3ae4e;
-$orange: #FA8B53;
-$coral: #F66D6A;
-$peony: #F57FC2;
-$plum: #BF6FC6;
-$sea: #68EEED;
+$orange: #fa8b53;
+$coral: #f66d6a;
+$peony: #f57fc2;
+$plum: #bf6fc6;
+$sea: #68eeed;
 
-
-
-$mobileXS: "screen and (max-width: 639px)";
-$mobile: "screen and (min-width: 640px)";
-$tablet: "screen and (min-width: 768px)";
-$laptop: "screen and (min-width: 992px)";
-$desktop: "screen and (min-width: 1280px)";
+$mobile: "screen and (max-width: 480px)";
+$tablet: "screen and (max-width: 768px)";
+$laptop: "screen and (max-width: 1024px)";
+$desktop: "screen and (min-width: 1025px)";

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./FixedCostsSummary.module.scss";
-import PercentageBar from "components/FixedCostsPanel/PercentageBar/PercentageBar";
+import ProgressBar from "components/FixedCostsPanel/ProgressBar/ProgressBar";
 
 const FixedCostsSummary = ({ paid, total }) => {
   const percentage = (paid / total) * 100;
@@ -11,7 +11,7 @@ const FixedCostsSummary = ({ paid, total }) => {
         <div className={styles.amount}>{paid}</div>
         <div className={styles.amountCaption}>paid</div>
       </div>
-      <PercentageBar value={percentage} />
+      <ProgressBar value={percentage} />
       <div className={styles.amountWrapper}>
         <div className={styles.amount}>{total}</div>
         <div className={styles.amountCaption}>total</div>
