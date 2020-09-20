@@ -5,17 +5,6 @@ import useWindowSize from "utils/useWindowSize";
 import ExpenseRow from "components/ExpensesPanel/ExpensesTable/ExpensesRow/ExpensesRow";
 import styles from "./ExpensesTable.module.scss";
 
-const DateRow = ({ date }) => {
-  const formattedDate = dayjs.unix(date).format("ddd / D.M");
-  return (
-    <div className={styles.date} key={date}>
-      {formattedDate}
-    </div>
-  );
-};
-
-DateRow.propTypes = { date: PropTypes.string };
-
 const ExpensesTable = ({ data, categories }) => {
   const { windowHeight } = useWindowSize();
 
@@ -26,7 +15,9 @@ const ExpensesTable = ({ data, categories }) => {
     >
       {Object.entries(data).map(([timestamp, expenses]) => (
         <div className={styles.rowWrapper}>
-          <DateRow date={timestamp} />
+          <div className={styles.date}>
+            {dayjs.unix(timestamp).format("ddd / D.M")}
+          </div>
           <div className={styles.dailyExpenses}>
             {expenses.map((el) => (
               <ExpenseRow key={el.id} rowData={el} categories={categories} />

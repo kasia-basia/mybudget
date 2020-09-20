@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./AddButton.module.scss";
-import AddExpenses from "components/AddExpenses/AddExpenses";
+import AddExpenses from "components/AddExpensesModal/AddExpensesModal";
 import { Modal, Button, Tooltip } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
@@ -19,9 +19,7 @@ const AddButton = () => {
           }}
         />
       </Tooltip>
-      <Modal visible={show} closable={false} footer={null}>
-        <AddExpenses setShow={setShow} />
-      </Modal>
+        <AddExpenses setShow={setShow} show={show}/>
     </div>
   );
 };
