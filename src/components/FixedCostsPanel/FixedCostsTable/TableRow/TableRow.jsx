@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { Switch } from "antd";
 import classNames from "classnames/bind";
 import dayjs from "dayjs";
-import Check from "components/Check/Check";
 import styles from "components/FixedCostsPanel/FixedCostsTable/TableRow/TableRow.module.scss";
 
 export const TableRowHeader = () => (
@@ -24,9 +24,9 @@ export const TableRow = ({ rowData, setBillStatus }) => {
       <div className={styles.amount}> {amount} PLN</div>
       <div className={styles.due}> {formattedDate} </div>
       <div className={styles.paid}>
-        <Check
+        <Switch
           checked={paid}
-          id={`checkbox_${id}`}
+          size="small"
           onClick={() => {
             setBillStatus(id);
           }}

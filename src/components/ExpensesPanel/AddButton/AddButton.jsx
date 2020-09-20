@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Modal from "components/Modal/Modal";
 import styles from "./AddButton.module.scss";
 import AddExpenses from "components/AddExpenses/AddExpenses";
+import { Modal } from "antd";
 
 const AddButton = () => {
   const [show, setShow] = useState(false);
@@ -15,7 +15,7 @@ const AddButton = () => {
       >
         +
       </button>
-      <Modal show={show}>
+      <Modal visible={show} closable={false} footer={null}>
         <AddExpenses setShow={setShow} />
       </Modal>
     </div>
