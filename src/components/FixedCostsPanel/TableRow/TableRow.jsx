@@ -2,7 +2,7 @@ import React from "react";
 import { Switch } from "antd";
 import classNames from "classnames/bind";
 import dayjs from "dayjs";
-import styles from "components/FixedCostsPanel/FixedCostsTable/TableRow/TableRow.module.scss";
+import styles from "./TableRow.module.scss";
 
 export const TableRowHeader = () => (
   <div className={classNames(styles.wrapper, styles.headerWrapper)}>

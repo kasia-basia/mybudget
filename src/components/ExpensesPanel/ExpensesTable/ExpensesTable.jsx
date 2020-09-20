@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
 import useWindowSize from "utils/useWindowSize";
-import ExpenseRow from "components/ExpensesPanel/ExpensesTable/ExpensesRow/ExpensesRow";
+import ExpenseRow from "components/ExpensesPanel/ExpensesRow/ExpensesRow";
 import styles from "./ExpensesTable.module.scss";
 
 const ExpensesTable = ({ data }) => {

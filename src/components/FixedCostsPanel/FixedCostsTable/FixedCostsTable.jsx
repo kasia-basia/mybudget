@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {
   TableRow,
   TableRowHeader,
-} from "components/FixedCostsPanel/FixedCostsTable/TableRow/TableRow";
+} from "components/FixedCostsPanel/TableRow/TableRow";
 import styles from "./FixedCostsTable.module.scss";
 
 const FixedCostsTable = ({ data, setBillStatus }) => {
