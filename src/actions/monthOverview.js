@@ -92,3 +92,28 @@ export const addExpense = (expense) => (dispatch) => {
       });
     });
 };
+
+export const deleteExpense = (id) => (dispatch) => {
+  dispatch({
+    type: c.DELETE_EXPENSE,
+  });
+
+  const db = firebase.firestore();
+  const docRef = db.collection("expenses");
+
+  docRef
+    .doc(id)
+    .delete()
+    .then(() => {
+      dispatch({
+        type: c.DELETE_EXPENSE_SUCCESS,
+        payload: { id },
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: c.DELETE_EXPENSE_ERROR,
+        payload: error,
+      });
+    });
+};

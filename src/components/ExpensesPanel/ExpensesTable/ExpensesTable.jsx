@@ -5,7 +5,7 @@ import useWindowSize from "utils/useWindowSize";
 import ExpenseRow from "components/ExpensesPanel/ExpensesTable/ExpensesRow/ExpensesRow";
 import styles from "./ExpensesTable.module.scss";
 
-const ExpensesTable = ({ data, categories }) => {
+const ExpensesTable = ({ data }) => {
   const { windowHeight } = useWindowSize();
 
   return (
@@ -20,7 +20,7 @@ const ExpensesTable = ({ data, categories }) => {
           </div>
           <div className={styles.dailyExpenses}>
             {expenses.map((el) => (
-              <ExpenseRow key={el.id} rowData={el} categories={categories} />
+              <ExpenseRow key={el.id} rowData={el} />
             ))}
           </div>
         </div>

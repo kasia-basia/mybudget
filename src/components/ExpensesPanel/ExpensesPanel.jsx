@@ -26,7 +26,7 @@ const ExpensesPanel = ({
 
   return (
     <Panel heading={"Daily expenses"} isLoading={isLoading}>
-      <ExpensesTable data={sortedData} categories={categories} />
+      <ExpensesTable data={sortedData} />
       <AddButton />
     </Panel>
   );
@@ -46,7 +46,6 @@ ExpensesPanel.propTypes = {
 const mapStateToProps = (state) => ({
   sortedData: getExpensesByDay(state),
   isLoading: getLoadingState(state, "expenses"),
-  categories: getCategories(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -22,24 +22,12 @@
   justify-content: flex-end;
 }
 
-.icons {
+.buttons {
   display: flex;
-  width: 10%;
   opacity: 0;
   transition: opacity 0.1s ease-in;
-
-  svg {
-    width: 15px;
-    path {
-      fill: $primary-blue;
-    }
-  }
-
-  svg:not(last-child) {
-    margin-right: 5px;
-  }
 }
 
-.rowWrapper:hover .icons {
+.rowWrapper:hover .buttons {
   opacity: 1;
 }

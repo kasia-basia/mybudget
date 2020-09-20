@@ -28,10 +28,16 @@ const expensesData = (state = {}, action) => {
       return [];
     case c.FETCH_EXPENSES_SUCCESS:
       return action.payload;
-    case c.ADD_EXPENSE_SUCCESS:
+    case c.ADD_EXPENSE_SUCCESS: {
       const newState = { ...state };
       newState[action.payload.id] = action.payload;
       return newState;
+    }
+    case c.DELETE_EXPENSE_SUCCESS: {
+      const newState = { ...state };
+      delete newState[action.payload.id];
+      return newState;
+    }
     default: {
       return state;
     }

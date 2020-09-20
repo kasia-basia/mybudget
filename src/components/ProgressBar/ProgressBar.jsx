@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./PercentageBar.module.scss";
+import styles from "components/ProgressBar/ProgressBar.module.scss";
 import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);

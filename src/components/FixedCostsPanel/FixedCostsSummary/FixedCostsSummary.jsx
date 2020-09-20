@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./FixedCostsSummary.module.scss";
-import ProgressBar from "components/FixedCostsPanel/ProgressBar/ProgressBar";
+import ProgressBar from "components/ProgressBar/ProgressBar";
 
 const FixedCostsSummary = ({ paid, total }) => {
   const percentage = (paid / total) * 100;
