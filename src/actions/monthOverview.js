@@ -69,7 +69,6 @@ export const setStatus = (id) => ({
 });
 
 export const addExpense = (expense) => (dispatch) => {
-
   dispatch({
     type: c.ADD_EXPENSE,
   });

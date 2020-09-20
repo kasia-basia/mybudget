@@ -4,9 +4,8 @@ import { Controller } from "react-hook-form";
 import DatePicker from "components/DatePicker/DatePicker";
 import dayjs from "dayjs";
 
-const FormRow = ({ control }) => {
+const FormRow = ({ control, options }) => {
   const { Option } = Select;
-  const options = ["clothing", "grocery", "transport", "alcohol"];
 
   return (
     <Input.Group>

@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import dayjs from "dayjs"
+import dayjs from "dayjs";
 import useWindowSize from "utils/useWindowSize";
 import ExpenseRow from "components/ExpensesPanel/ExpensesTable/ExpensesRow/ExpensesRow";
 import styles from "./ExpensesTable.module.scss";
 
 const DateRow = ({ date }) => {
-  const formattedDate = dayjs.unix(date).format('ddd / D.M');
+  const formattedDate = dayjs.unix(date).format("ddd / D.M");
   return (
     <div className={styles.date} key={date}>
       {formattedDate}
@@ -16,7 +16,7 @@ const DateRow = ({ date }) => {
 
 DateRow.propTypes = { date: PropTypes.string };
 
-const ExpensesTable = ({ data }) => {
+const ExpensesTable = ({ data, categories }) => {
   const { windowHeight } = useWindowSize();
 
   return (
@@ -28,9 +28,9 @@ const ExpensesTable = ({ data }) => {
         <div className={styles.rowWrapper}>
           <DateRow date={timestamp} />
           <div className={styles.dailyExpenses}>
-          {expenses.map((el) => (
-            <ExpenseRow key={el.id} rowData={el} />
-          ))}
+            {expenses.map((el) => (
+              <ExpenseRow key={el.id} rowData={el} categories={categories} />
+            ))}
           </div>
         </div>
       ))}

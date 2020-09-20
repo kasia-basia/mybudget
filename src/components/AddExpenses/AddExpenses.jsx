@@ -7,9 +7,10 @@ import { useForm } from "react-hook-form";
 import { addExpense } from "actions/monthOverview";
 import styles from "./AddExpenses.module.scss";
 import FormRow from "./FormRow/FormRow";
+import { getCategoriesOptions } from "selectors/categories";
 
-const AddExpenses = ({ setShow, onAddExpense }) => {
-  const { handleSubmit, errors, register, control } = useForm();
+const AddExpenses = ({ setShow, onAddExpense, categories }) => {
+  const { handleSubmit, errors, control } = useForm();
   const onSubmit = (data) => {
     data.timestamp = dayjs(data.timestamp).unix().toString();
     onAddExpense(data);
@@ -27,7 +28,7 @@ const AddExpenses = ({ setShow, onAddExpense }) => {
           <Col span={6}>Category</Col>
         </Row>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormRow register={register} control={control} />
+          <FormRow options={categories} control={control} />
           <div className={styles.errors}>
             {errors.name && <span>Name is required. </span>}
             {errors.timestamp && <span>Date is required. </span>}
@@ -58,8 +59,12 @@ AddExpenses.propTypes = {
   onAddExpense: PropTypes.func,
 };
 
+const mapStateToProps = (state) => ({
+  categories: getCategoriesOptions(state),
+});
+
 const mapDispatchToProps = (dispatch) => ({
   onAddExpense: (expense) => dispatch(addExpense(expense)),
 });
 
-export default connect(null, mapDispatchToProps)(AddExpenses);
+export default connect(mapStateToProps, mapDispatchToProps)(AddExpenses);

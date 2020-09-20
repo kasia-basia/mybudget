@@ -5,16 +5,28 @@ import ExpensesTable from "components/ExpensesPanel/ExpensesTable/ExpensesTable"
 import Panel from "components/Panel/Panel";
 import AddButton from "components/ExpensesPanel/AddButton/AddButton";
 import { fetchExpenses } from "actions/monthOverview";
+import { fetchCategories } from "actions/categories";
 import { getExpensesByDay, getLoadingState } from "selectors/monthOverview";
+import { getCategories } from "selectors/categories";
 
-const ExpensesPanel = ({ fetchData, sortedData, isLoading }) => {
+const ExpensesPanel = ({
+  categories,
+  onFetchData,
+  onFetchCategories,
+  sortedData,
+  isLoading,
+}) => {
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    onFetchData();
+  }, [onFetchData]);
+
+  useEffect(() => {
+    onFetchCategories();
+  }, [onFetchCategories]);
 
   return (
     <Panel heading={"Daily expenses"} isLoading={isLoading}>
-      <ExpensesTable data={sortedData} />
+      <ExpensesTable data={sortedData} categories={categories} />
       <AddButton />
     </Panel>
   );
@@ -34,10 +46,12 @@ ExpensesPanel.propTypes = {
 const mapStateToProps = (state) => ({
   sortedData: getExpensesByDay(state),
   isLoading: getLoadingState(state, "expenses"),
+  categories: getCategories(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (id) => dispatch(fetchExpenses(id)),
+  onFetchData: () => dispatch(fetchExpenses()),
+  onFetchCategories: () => dispatch(fetchCategories()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpensesPanel);
