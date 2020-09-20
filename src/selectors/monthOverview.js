@@ -1,6 +1,6 @@
+import dayjs from "dayjs";
 import { createSelector } from "reselect";
 import { isEmpty } from "utils/utils";
-import { isSameDay, fromUnixTime } from "date-fns";
 
 const _getExpenses = (state) => state.expenses.data;
 const _getFixedCosts = (state) => state.fixedCosts.data;
@@ -21,9 +21,9 @@ export const getExpensesByDay = createSelector(getSortedExpenses, (data) => {
   const result = {};
   if (!isEmpty(data)) {
     for (let i = 0; i < data.length - 1; i++) {
-      const currDay = fromUnixTime(data[i].timestamp);
-      const nextDay = fromUnixTime(data[i + 1].timestamp);
-      if (isSameDay(currDay, nextDay)) {
+      const currDay = dayjs.unix(data[i].timestamp);
+      const nextDay = dayjs.unix(data[i + 1].timestamp);
+      if (currDay.isSame(nextDay, "day")) {
         result[data[i].timestamp] = [data[i], data[i + 1]];
         i++;
       } else {

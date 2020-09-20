@@ -1,27 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { useForm } from "react-hook-form";
+import dayjs from "dayjs";
+import DatePicker from "components/DatePicker/DatePicker";
+import { useForm, Controller } from "react-hook-form";
 import { addExpense } from "actions/monthOverview";
-import DayPickerInput from "react-day-picker/DayPickerInput";
-import { DateUtils } from "react-day-picker";
-import dateFnsFormat from "date-fns/format";
-import dateFnsParse from "date-fns/parse";
 import cx from "classnames";
-import "assets/styles/DayPicker.scss";
 import styles from "./AddExpenses.module.scss";
-import getUnixTime from "date-fns/getUnixTime";
 
-const parseDate = (str, format, locale) => {
-  const parsed = dateFnsParse(str, format, new Date(), { locale });
-  return DateUtils.isDate(parsed) ? parsed : undefined;
-};
-
-const formatDate = (date, format, locale) =>
-  dateFnsFormat(date, format, { locale });
-
-const FormRow = ({ register }) => {
-  const FORMAT = "MM/dd/yyyy";
+const FormRow = ({ register, control }) => {
   return (
     <div className={styles.formRow}>
       <input
@@ -30,18 +17,13 @@ const FormRow = ({ register }) => {
         type={"text"}
         ref={register({ required: true })}
       />
-      <DayPickerInput
-        onDayChange={() => {}}
-        formatDate={formatDate}
-        format={FORMAT}
-        parseDate={parseDate}
-        placeholder={`${dateFnsFormat(new Date(), FORMAT)}`}
-        inputProps={{
-          name: "timestamp",
-          className: cx(styles.input, styles.timestamp),
-          ref: register({ required: true }),
-        }}
+      <Controller
+        as={<DatePicker />}
+        name="timestamp"
+        control={control}
+        defaultValue=""
       />
+
       <input
         name={"amount"}
         className={cx(styles.input, styles.amount)}
@@ -60,14 +42,12 @@ const FormRow = ({ register }) => {
 };
 
 const AddExpenses = ({ setShow, onAddExpense }) => {
-  const { handleSubmit, errors, register } = useForm();
+  const { handleSubmit, errors, register, control } = useForm();
   const onSubmit = (data) => {
-      data.timestamp = getUnixTime(
-      dateFnsParse(data.timestamp, "MM/dd/yyyy", new Date())
-    ).toString();
-
-    onAddExpense(data);
-    setShow(false);
+    data.timestamp = dayjs(data.timestamp).unix().toString();
+    console.log(data);
+    // onAddExpense(data);
+    // setShow(false);
   };
 
   return (
@@ -81,7 +61,7 @@ const AddExpenses = ({ setShow, onAddExpense }) => {
           <div className={styles.category}>Category</div>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormRow register={register} />
+          <FormRow register={register} control={control} />
           <div className={styles.errors}>
             {errors.name && (
               <span className={styles.error}>Name is required. </span>

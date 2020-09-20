@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import format from "date-fns/format";
-import fromUnixTime from "date-fns/fromUnixTime";
+import dayjs from "dayjs"
 import useWindowSize from "utils/useWindowSize";
 import ExpenseRow from "components/ExpensesPanel/ExpensesTable/ExpensesRow/ExpensesRow";
 import styles from "./ExpensesTable.module.scss";
 
 const DateRow = ({ date }) => {
-  const formattedDate = format(fromUnixTime(date), "EEEE, d.M");
+  const formattedDate = dayjs.unix(date).format('dddd, D.M');
   return (
     <div className={styles.date} key={date}>
       {formattedDate}

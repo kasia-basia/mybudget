@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames/bind";
-import fromUnixTime from "date-fns/fromUnixTime";
-import format from "date-fns/format";
+import dayjs from "dayjs";
 import Check from "components/Check/Check";
 import styles from "components/FixedCostsPanel/FixedCostsTable/TableRow/TableRow.module.scss";
 
@@ -16,7 +15,7 @@ export const TableRowHeader = () => (
 
 export const TableRow = ({ rowData, setBillStatus }) => {
   const { name, amount, dueDate, paid, id } = rowData;
-  const formattedDate = format(fromUnixTime(dueDate), "MMM do");
+  const formattedDate = dayjs.unix(dueDate).format("D.M");
   const cx = classNames.bind(styles);
 
   return (

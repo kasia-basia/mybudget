@@ -1,7 +1,5 @@
 import * as c from "constants/monthOverwiew";
 import firebase from "firebaseConfig";
-import getUnixTime from "date-fns/getUnixTime";
-import parseISO from "date-fns/parseISO";
 
 export const fetchExpenses = (
   monthBeginning = "1604188800",
