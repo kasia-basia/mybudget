@@ -16,7 +16,7 @@ const ExpensesTable = ({ data }) => {
       {Object.entries(data).map(([timestamp, expenses]) => (
         <div className={styles.rowWrapper}>
           <div className={styles.date}>
-            {dayjs.unix(timestamp).format("ddd / D.M")}
+            {dayjs(timestamp).format("ddd / D.M")}
           </div>
           <div className={styles.dailyExpenses}>
             {expenses.map((el) => (

@@ -21,20 +21,15 @@ export const getSortedExpenses = createSelector(_getExpenses, (data) => {
 });
 
 export const getExpensesByDay = createSelector(getSortedExpenses, (data) => {
-  const result = {};
-  if (!isEmpty(data)) {
-    for (let i = 0; i < data.length - 1; i++) {
-      const currDay = dayjs.unix(data[i].timestamp);
-      const nextDay = dayjs.unix(data[i + 1].timestamp);
-      if (currDay.isSame(nextDay, "day")) {
-        result[data[i].timestamp] = [data[i], data[i + 1]];
-        i++;
-      } else {
-        result[data[i].timestamp] = [data[i]];
-        result[data[i + 1].timestamp] = [data[i + 1]];
-      }
+  let result = {};
+  data.forEach((el) => {
+    const date = dayjs.unix(el.timestamp).startOf('day');
+    if (result[date]) {
+      result[date].push(el);
+    } else {
+      result[date] = [el];
     }
-  }
+  });
   return result;
 });
 
