@@ -16,11 +16,31 @@ const loadingReducer = (prefix, initialState) => (
   }
 };
 
+const loadingFinishedReducer = (prefix) => (state = false, action) => {
+  switch (action.type) {
+    case prefix:
+      return false;
+    case `${prefix}_ERROR`:
+    case `${prefix}_SUCCESS`:
+      return true;
+    default:
+      return state;
+  }
+};
+
 const createLoadingReducer = (prefix, initialState) =>
   loadingReducer(prefix, initialState);
 
+const createLoadingFinishedReducer = (prefix) => loadingFinishedReducer(prefix);
+
 const expensesLoading = createLoadingReducer(c.FETCH_EXPENSES, false);
+const expensesLoadingFinished = createLoadingFinishedReducer(c.FETCH_EXPENSES);
+
 const fixedCostsLoading = createLoadingReducer(c.FETCH_FIXED_COSTS, false);
+const fixedCostsLoadingFinished = createLoadingFinishedReducer(
+  c.FETCH_FIXED_COSTS,
+  false
+);
 
 const expensesData = (state = {}, action) => {
   switch (action.type) {
@@ -66,9 +86,11 @@ const fixedCostsData = (state = [], action) => {
 export const fixedCosts = combineReducers({
   data: fixedCostsData,
   isLoading: fixedCostsLoading,
+  isLoadingFinished: fixedCostsLoadingFinished,
 });
 
 export const expenses = combineReducers({
   data: expensesData,
   isLoading: expensesLoading,
+  isLoadingFinished: expensesLoadingFinished,
 });

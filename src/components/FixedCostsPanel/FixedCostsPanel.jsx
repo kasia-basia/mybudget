@@ -10,6 +10,7 @@ import {
   getFixedCostsTotal,
   getFixedCostsPaid,
   getLoadingState,
+  getIsEmpty,
 } from "selectors/monthOverview";
 
 const FixedCostsPanel = ({
@@ -19,13 +20,14 @@ const FixedCostsPanel = ({
   total,
   setBillStatus,
   isLoading,
+  hasNoData,
 }) => {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
   return (
-    <Panel heading={"Fixed costs"} isLoading={isLoading}>
+    <Panel heading={"Fixed costs"} isLoading={isLoading} hasNoData={hasNoData}>
       <FixedCostsSummary paid={paid} total={total} />
       <FixedCostsTable data={data} setBillStatus={setBillStatus} />
     </Panel>
@@ -48,6 +50,7 @@ const mapStateToProps = (state) => ({
   paid: getFixedCostsPaid(state),
   total: getFixedCostsTotal(state),
   isLoading: getLoadingState(state, "fixedCosts"),
+  hasNoData: getIsEmpty(state, "fixedCosts"),
 });
 
 const mapDispatchToProps = (dispatch) => ({

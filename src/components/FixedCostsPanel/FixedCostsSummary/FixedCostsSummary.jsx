@@ -4,7 +4,7 @@ import styles from "./FixedCostsSummary.module.scss";
 import ProgressBar from "components/ProgressBar/ProgressBar";
 
 const FixedCostsSummary = ({ paid, total }) => {
-  const percentage = (paid / total) * 100;
+  const percentage = (paid / total) * 100 || 0;
   return (
     <div className={styles.wrapper}>
       <div className={styles.amountWrapper}>

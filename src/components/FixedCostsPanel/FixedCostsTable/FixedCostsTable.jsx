@@ -5,14 +5,20 @@ import {
   TableRowHeader,
 } from "components/FixedCostsPanel/TableRow/TableRow";
 import styles from "./FixedCostsTable.module.scss";
+import { isEmpty } from "utils/utils";
+import { Empty } from "antd";
 
 const FixedCostsTable = ({ data, setBillStatus }) => {
   return (
     <div className={styles.wrapper}>
       <TableRowHeader />
-      {data.map((el) => (
-        <TableRow rowData={el} key={el.id} setBillStatus={setBillStatus} />
-      ))}
+      {isEmpty(data) ? (
+        <Empty />
+      ) : (
+        data.map((el) => (
+          <TableRow rowData={el} key={el.id} setBillStatus={setBillStatus} />
+        ))
+      )}
     </div>
   );
 };
