@@ -1,56 +1,85 @@
 import React from "react";
 import { connect } from "react-redux";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import styles from "./ExpensesRow.module.scss";
-import { Tag, Space, Button, Tooltip } from "antd";
-import { getColorFromCategory } from "utils/utils";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Button, Tooltip, Row, Col, Typography } from "antd";
+import useEditableField from "utils/useEditableField";
+import { DeleteOutlined } from "@ant-design/icons";
 import { getCategories } from "selectors/categories";
-import { deleteExpense } from "actions/monthOverview";
+import { deleteExpense, editExpense } from "actions/monthOverview";
+import EditableCategoryTag from "components/ExpensesPanel/EditableCategoryTag/EditableCategoryTag";
 
-const ExpenseRow = ({ rowData, categories, onDeleteExpense }) => {
+const { Paragraph } = Typography;
+
+const ExpenseRow = ({
+  rowData,
+  categories,
+  onDeleteExpense,
+  onEditExpense,
+}) => {
   const { name, amount, category, id } = rowData;
+  const [nameValue, onNameChange] = useEditableField(name, "name", id);
+  const [amountValue, onAmountChange] = useEditableField(
+    amount,
+    "amount",
+    id,
+    true
+  );
 
   return (
     <div className={styles.rowWrapper}>
-      <div className={styles.name}> {name}</div>
-      <div className={styles.amount}> {amount}</div>
-      <div className={styles.category}>
-        <Tag color={getColorFromCategory(categories, category)}>{category}</Tag>
-      </div>
-      <div className={styles.buttons}>
-        <Space>
-          <Tooltip title="Edit" color="blue">
-            <Button
-              size="small"
-              shape="circle"
-              type="dashed"
-              icon={<EditOutlined />}
-            />
-          </Tooltip>
-          <Tooltip title="Delete" color="blue">
-            <Button
-              size="small"
-              shape="circle"
-              type="dashed"
-              icon={<DeleteOutlined />}
-              onClick={() => {
-                onDeleteExpense(id);
-                // message.success("Item deleted", 2);
-              }}
-            />
-          </Tooltip>
-        </Space>
-      </div>
+      <Row gutter={8}>
+        <Col span={11}>
+          <Paragraph
+            className={styles.paragraph}
+            editable={{
+              onChange: onNameChange,
+            }}
+          >
+            {nameValue}
+          </Paragraph>
+        </Col>
+        <Col span={5}>
+          <Paragraph
+            className={styles.paragraph}
+            editable={{
+              onChange: onAmountChange,
+            }}
+          >
+            {amountValue}
+          </Paragraph>
+        </Col>
+        <Col span={6} className={styles.categoryWrapper}>
+          <EditableCategoryTag
+            categories={categories}
+            category={category}
+            id={id}
+            onEditExpense={onEditExpense}
+          />
+        </Col>
+        <Col span={2}>
+          <div className={styles.buttons}>
+            <Tooltip title="Delete" color="blue">
+              <Button
+                size="small"
+                shape="circle"
+                type="dashed"
+                icon={<DeleteOutlined />}
+                onClick={() => onDeleteExpense(id)}
+              />
+            </Tooltip>
+          </div>
+        </Col>
+      </Row>
     </div>
   );
 };
 
 ExpenseRow.propTypes = {
-  rowData: propTypes.shape({
-    name: propTypes.string,
-    amount: propTypes.number,
-    category: propTypes.string,
+  rowData: PropTypes.shape({
+    name: PropTypes.string,
+    amount: PropTypes.number,
+    category: PropTypes.string,
   }),
 };
 
@@ -60,6 +89,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onDeleteExpense: (id) => dispatch(deleteExpense(id)),
+  onEditExpense: (id, name, value) => dispatch(editExpense(id, name, value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseRow);

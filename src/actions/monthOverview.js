@@ -92,6 +92,7 @@ export const addExpense = (expense) => (dispatch) => {
         type: c.ADD_EXPENSE_ERROR,
         payload: error,
       });
+      message.warn("Something went wrong. Please try again.", 2);
     });
 };
 
@@ -118,5 +119,35 @@ export const deleteExpense = (id) => (dispatch) => {
         type: c.DELETE_EXPENSE_ERROR,
         payload: error,
       });
+      message.warn("Something went wrong. Please try again.", 2);
+    });
+};
+
+export const editExpense = (id, field, newValue) => (dispatch) => {
+  dispatch({
+    type: c.EDIT_EXPENSE,
+  });
+
+  const db = firebase.firestore();
+  const docRef = db.collection("expenses");
+
+  docRef
+    .doc(id)
+    .update({
+      [field]: newValue,
+    })
+    .then(() => {
+      dispatch({
+        type: c.EDIT_EXPENSE_SUCCESS,
+        payload: { id, newValue: [field, newValue] },
+      });
+      message.success("Saved", 2);
+    })
+    .catch((error) => {
+      dispatch({
+        type: c.EDIT_EXPENSE_ERROR,
+        payload: error,
+      });
+      message.warn("Something went wrong. Please try again.", 2);
     });
 };
