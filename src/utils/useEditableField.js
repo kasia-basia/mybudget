@@ -23,10 +23,7 @@ const useEditableField = (initialValue, name, id, isNumerical = false) => {
     }
   };
 
-  return {
-    [`${name}Change`]: onChange,
-    [`${name}Value`]: value,
-  };
+  return [value, onChange];
 };
 
 export default useEditableField;

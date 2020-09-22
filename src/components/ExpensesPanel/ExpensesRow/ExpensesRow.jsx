@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styles from "./ExpensesRow.module.scss";
@@ -13,8 +13,8 @@ const { Paragraph } = Typography;
 
 const ExpenseRow = ({ rowData, categories, onDeleteExpense }) => {
   const { name, amount, category, id } = rowData;
-  const { nameChange, nameValue } = useEditableField(name, "name", id);
-  const { amountChange, amountValue } = useEditableField(
+  const [nameValue, onNameChange] = useEditableField(name, "name", id);
+  const [amountValue, onAmountChange] = useEditableField(
     amount,
     "amount",
     id,
@@ -28,7 +28,7 @@ const ExpenseRow = ({ rowData, categories, onDeleteExpense }) => {
           <Paragraph
             className={styles.paragraph}
             editable={{
-              onChange: nameChange,
+              onChange: onNameChange,
             }}
           >
             {nameValue}
@@ -38,7 +38,7 @@ const ExpenseRow = ({ rowData, categories, onDeleteExpense }) => {
           <Paragraph
             className={styles.paragraph}
             editable={{
-              onChange: amountChange,
+              onChange: onAmountChange,
             }}
           >
             {amountValue}
