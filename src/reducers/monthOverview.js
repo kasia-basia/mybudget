@@ -64,7 +64,7 @@ const expensesData = (state = {}, action) => {
         ...newState[action.payload.id],
         [action.payload.newValue[0]]: action.payload.newValue[1],
       };
-      return newState
+      return newState;
     }
     default: {
       return state;
@@ -78,11 +78,11 @@ const fixedCostsData = (state = [], action) => {
       return [];
     case c.FETCH_FIXED_COSTS_SUCCESS:
       return action.payload;
-    case c.SET_BILL_STATUS:
+    case c.EDIT_FIXED_COST_SUCCESS:
       const newState = { ...state };
-      newState[action.id] = {
-        ...state[action.id],
-        paid: !state[action.id].paid,
+      newState[action.payload.id] = {
+        ...state[action.payload.id],
+        ...action.payload.newData,
       };
       return newState;
     default: {

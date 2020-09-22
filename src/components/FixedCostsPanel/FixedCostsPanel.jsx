@@ -4,7 +4,7 @@ import Panel from "components/Panel/Panel";
 import FixedCostsSummary from "components/FixedCostsPanel/FixedCostsSummary/FixedCostsSummary";
 import FixedCostsTable from "components/FixedCostsPanel/FixedCostsTable/FixedCostsTable";
 import { connect } from "react-redux";
-import { fetchCosts, setStatus } from "actions/monthOverview";
+import { fetchCosts, editFixedCost } from "actions/monthOverview";
 import {
   getSortedFixedCosts,
   getFixedCostsTotal,
@@ -18,7 +18,7 @@ const FixedCostsPanel = ({
   data,
   paid,
   total,
-  setBillStatus,
+  editFixedCost,
   isLoading,
   hasNoData,
 }) => {
@@ -29,7 +29,7 @@ const FixedCostsPanel = ({
   return (
     <Panel heading={"Fixed costs"} isLoading={isLoading} hasNoData={hasNoData}>
       <FixedCostsSummary paid={paid} total={total} />
-      <FixedCostsTable data={data} setBillStatus={setBillStatus} />
+      <FixedCostsTable data={data} editFixedCost={editFixedCost} />
     </Panel>
   );
 };
@@ -55,7 +55,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchData: () => dispatch(fetchCosts()),
-  setBillStatus: (id) => dispatch(setStatus(id)),
+  editFixedCost: (id, newData) => dispatch(editFixedCost(id, newData)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FixedCostsPanel);

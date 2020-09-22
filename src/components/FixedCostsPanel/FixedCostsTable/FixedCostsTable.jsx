@@ -8,7 +8,7 @@ import styles from "./FixedCostsTable.module.scss";
 import { isEmpty } from "utils/utils";
 import { Empty } from "antd";
 
-const FixedCostsTable = ({ data, setBillStatus }) => {
+const FixedCostsTable = ({ data, editFixedCost }) => {
   return (
     <div className={styles.wrapper}>
       <TableRowHeader />
@@ -16,7 +16,7 @@ const FixedCostsTable = ({ data, setBillStatus }) => {
         <Empty />
       ) : (
         data.map((el) => (
-          <TableRow rowData={el} key={el.id} setBillStatus={setBillStatus} />
+          <TableRow rowData={el} key={el.id} editFixedCost={editFixedCost} />
         ))
       )}
     </div>

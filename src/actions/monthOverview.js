@@ -64,10 +64,30 @@ export const fetchCosts = () => (dispatch) => {
     });
 };
 
-export const setStatus = (id) => ({
-  type: c.SET_BILL_STATUS,
-  id,
-});
+export const editFixedCost = (id, newData = {}) => (dispatch) => {
+  dispatch({
+    type: c.EDIT_FIXED_COST,
+  });
+  const db = firebase.firestore();
+  const docRef = db.collection("fixedCosts");
+  console.log(newData);
+  docRef
+    .doc(id)
+    .update(newData)
+    .then((data) => {
+      dispatch({
+        type: c.EDIT_FIXED_COST_SUCCESS,
+        payload: { id, newData },
+      });
+      message.success("Saved", 2);
+    })
+    .catch((error) => {
+      dispatch({
+        type: c.EDIT_FIXED_COST_ERROR,
+        payload: error,
+      });
+    });
+};
 
 export const addExpense = (expense) => (dispatch) => {
   dispatch({
