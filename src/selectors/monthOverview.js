@@ -23,7 +23,7 @@ export const getSortedExpenses = createSelector(_getExpenses, (data) => {
 export const getExpensesByDay = createSelector(getSortedExpenses, (data) => {
   let result = {};
   data.forEach((el) => {
-    const date = dayjs.unix(el.timestamp).startOf('day');
+    const date = dayjs.unix(el.timestamp).startOf("day");
     if (result[date]) {
       result[date].push(el);
     } else {
@@ -56,4 +56,14 @@ export const getFixedCostsPaid = createSelector(_getFixedCosts, (data) => {
       .reduce((a, b) => a + (b["amount"] || 0), 0);
   }
   return null;
+});
+
+export const getTotalExpenses = createSelector(_getExpenses, (data) => {
+  if (!isEmpty(data)) {
+    return Object.values(data)
+      .map((el) => parseFloat(el["amount"].toString().replace(",", ".")))
+      .reduce((a, b) => a + b)
+      .toFixed(2);
+  }
+  return undefined;
 });
