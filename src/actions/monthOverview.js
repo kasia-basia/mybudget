@@ -92,6 +92,7 @@ export const addExpense = (expense) => (dispatch) => {
         type: c.ADD_EXPENSE_ERROR,
         payload: error,
       });
+      message.warn("Something went wrong. Please try again.", 2);
     });
 };
 
@@ -118,6 +119,7 @@ export const deleteExpense = (id) => (dispatch) => {
         type: c.DELETE_EXPENSE_ERROR,
         payload: error,
       });
+      message.warn("Something went wrong. Please try again.", 2);
     });
 };
 
@@ -146,5 +148,6 @@ export const editExpense = (id, field, newValue) => (dispatch) => {
         type: c.EDIT_EXPENSE_ERROR,
         payload: error,
       });
+      message.warn("Something went wrong. Please try again.", 2);
     });
 };

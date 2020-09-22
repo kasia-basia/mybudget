@@ -1,0 +1,11 @@
+.select {
+  &:first-child {
+    div {
+      padding: 0 !important;
+    }
+  }
+}
+
+.tag {
+  margin-right: 0;
+}

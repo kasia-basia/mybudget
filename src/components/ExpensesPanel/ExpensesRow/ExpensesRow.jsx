@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styles from "./ExpensesRow.module.scss";
-import { Tag, Button, Tooltip, Row, Col, Typography } from "antd";
-import { getColorFromCategory } from "utils/utils";
+import { Button, Tooltip, Row, Col, Typography } from "antd";
 import useEditableField from "utils/useEditableField";
 import { DeleteOutlined } from "@ant-design/icons";
 import { getCategories } from "selectors/categories";
-import { deleteExpense } from "actions/monthOverview";
+import { deleteExpense, editExpense } from "actions/monthOverview";
+import EditableCategoryTag from "components/ExpensesPanel/EditableCategoryTag/EditableCategoryTag";
 
 const { Paragraph } = Typography;
 
-const ExpenseRow = ({ rowData, categories, onDeleteExpense }) => {
+const ExpenseRow = ({
+  rowData,
+  categories,
+  onDeleteExpense,
+  onEditExpense,
+}) => {
   const { name, amount, category, id } = rowData;
   const [nameValue, onNameChange] = useEditableField(name, "name", id);
   const [amountValue, onAmountChange] = useEditableField(
@@ -44,10 +49,13 @@ const ExpenseRow = ({ rowData, categories, onDeleteExpense }) => {
             {amountValue}
           </Paragraph>
         </Col>
-        <Col span={6}>
-          <Tag color={getColorFromCategory(categories, category)}>
-            {category}
-          </Tag>
+        <Col span={6} className={styles.categoryWrapper}>
+          <EditableCategoryTag
+            categories={categories}
+            category={category}
+            id={id}
+            onEditExpense={onEditExpense}
+          />
         </Col>
         <Col span={2}>
           <div className={styles.buttons}>
@@ -81,6 +89,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onDeleteExpense: (id) => dispatch(deleteExpense(id)),
+  onEditExpense: (id, name, value) => dispatch(editExpense(id, name, value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseRow);

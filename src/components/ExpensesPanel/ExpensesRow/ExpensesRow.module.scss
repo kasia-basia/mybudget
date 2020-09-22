@@ -10,13 +10,23 @@
 }
 
 .paragraph {
-
   div {
     opacity: 0;
     transition: opacity 0.1s ease-in;
   }
 
   &:hover div {
+    opacity: 1;
+  }
+}
+
+.categoryWrapper {
+  button {
+    opacity: 0;
+    transition: opacity 0.1s ease-in;
+  }
+
+  &:hover button {
     opacity: 1;
   }
 }
