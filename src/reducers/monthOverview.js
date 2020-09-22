@@ -58,6 +58,14 @@ const expensesData = (state = {}, action) => {
       delete newState[action.payload.id];
       return newState;
     }
+    case c.EDIT_EXPENSE_SUCCESS: {
+      const newState = { ...state };
+      newState[action.payload.id] = {
+        ...newState[action.payload.id],
+        [action.payload.newValue[0]]: action.payload.newValue[1],
+      };
+      return newState
+    }
     default: {
       return state;
     }

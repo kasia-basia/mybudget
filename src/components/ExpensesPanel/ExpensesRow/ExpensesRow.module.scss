@@ -1,33 +1,22 @@
 @import "assets/styles/variables";
 
-.rowWrapper {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.4em;
-  align-items: center;
-}
-
-.name {
-  width: 40%;
-}
-
-.amount {
-  width: 15%;
-  text-align: center;
-}
-
-.category {
-  width: 25%;
-  display: flex;
-  justify-content: flex-end;
-}
-
 .buttons {
-  display: flex;
   opacity: 0;
   transition: opacity 0.1s ease-in;
 }
 
 .rowWrapper:hover .buttons {
   opacity: 1;
+}
+
+.paragraph {
+
+  div {
+    opacity: 0;
+    transition: opacity 0.1s ease-in;
+  }
+
+  &:hover div {
+    opacity: 1;
+  }
 }
