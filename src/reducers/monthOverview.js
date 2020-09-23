@@ -1,5 +1,7 @@
 import * as c from "constants/monthOverwiew";
 import { combineReducers } from "redux";
+import { SET_MONTH } from "constants/monthOverwiew";
+import {getMonthBoundary} from "utils/dateHelpers";
 
 const loadingReducer = (prefix, initialState) => (
   state = initialState,
@@ -66,9 +68,8 @@ const expensesData = (state = {}, action) => {
       };
       return newState;
     }
-    default: {
+    default:
       return state;
-    }
   }
 };
 
@@ -85,9 +86,19 @@ const fixedCostsData = (state = [], action) => {
         ...action.payload.newData,
       };
       return newState;
-    default: {
+    default:
       return state;
-    }
+  }
+};
+
+const initialMonth = getMonthBoundary(new Date());
+
+export const currentMonth = (state = initialMonth, action) => {
+  switch (action.type) {
+    case SET_MONTH:
+      return action.payload;
+    default:
+      return state;
   }
 };
 

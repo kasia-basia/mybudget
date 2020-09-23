@@ -4,6 +4,8 @@
   display: flex;
   height: 5em;
   flex-grow: 1;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .heading {

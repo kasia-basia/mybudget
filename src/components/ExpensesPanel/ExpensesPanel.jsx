@@ -10,6 +10,7 @@ import {
   getExpensesByDay,
   getLoadingState,
   getIsEmpty,
+  getCurrentMonth,
 } from "selectors/monthOverview";
 
 const ExpensesPanel = ({
@@ -18,10 +19,12 @@ const ExpensesPanel = ({
   sortedData,
   isLoading,
   hasNoData,
+  currentMonth,
 }) => {
+
   useEffect(() => {
-    onFetchData();
-  }, [onFetchData]);
+    onFetchData(currentMonth.start, currentMonth.end);
+  }, [onFetchData, currentMonth.start, currentMonth.end]);
 
   useEffect(() => {
     onFetchCategories();
@@ -57,12 +60,14 @@ ExpensesPanel.propTypes = {
 
 const mapStateToProps = (state) => ({
   sortedData: getExpensesByDay(state),
+  currentMonth: getCurrentMonth(state),
   isLoading: getLoadingState(state, "expenses"),
   hasNoData: getIsEmpty(state, "expenses"),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFetchData: () => dispatch(fetchExpenses()),
+  onFetchData: (startDate, endDate) =>
+    dispatch(fetchExpenses(startDate, endDate)),
   onFetchCategories: () => dispatch(fetchCategories()),
 });
 

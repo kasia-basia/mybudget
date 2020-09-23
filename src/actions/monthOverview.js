@@ -1,19 +1,18 @@
 import * as c from "constants/monthOverwiew";
 import firebase from "firebaseConfig";
 import { message } from "antd";
+import { getMonthBoundary } from "utils/dateHelpers";
 
-export const fetchExpenses = (
-  monthBeginning = "1604188800",
-  monthEnd = "1606867199"
-) => (dispatch) => {
+export const fetchExpenses = (startDate, endDate) => (dispatch) => {
+  console.log(startDate, endDate);
   dispatch({
     type: c.FETCH_EXPENSES,
   });
   const db = firebase.firestore();
   const docRef = db
     .collection("expenses")
-    .where("timestamp", ">", monthBeginning)
-    .where("timestamp", "<", monthEnd);
+    .where("timestamp", ">", startDate)
+    .where("timestamp", "<", endDate);
 
   docRef
     .get()
@@ -170,4 +169,11 @@ export const editExpense = (id, field, newValue) => (dispatch) => {
       });
       message.warn("Something went wrong. Please try again.", 2);
     });
+};
+
+export const setMonth = (date) => {
+  return {
+    type: c.SET_MONTH,
+    payload: getMonthBoundary(date),
+  };
 };

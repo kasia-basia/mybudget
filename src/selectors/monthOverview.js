@@ -5,10 +5,14 @@ import { isEmpty } from "utils/utils";
 const _getExpenses = (state) => state.expenses.data;
 const _getFixedCosts = (state) => state.fixedCosts.data;
 
+export const getCurrentMonth = (state) => state.currentMonth;
 export const getLoadingState = (state, key) => state[key].isLoading;
 
 export const getIsEmpty = (state, key) =>
   state[key].isLoadingFinished && isEmpty(state[key].data);
+
+export const getCurrentMonthName = (state) =>
+  dayjs.unix(state.currentMonth.start).format("MMMM");
 
 export const getSortedExpenses = createSelector(_getExpenses, (data) => {
   const arr = Object.entries(data).map(([id, details]) => ({
