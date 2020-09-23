@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import styles from "./Header.module.scss";
 import DatePicker from "components/DatePicker/DatePicker";
 import { setMonth } from "actions/monthOverview";
-import { getCurrentMonthName } from "selectors/monthOverview";
+import { getCurrentMonthStart } from "selectors/monthOverview";
+import { CalendarOutlined } from "@ant-design/icons";
+import {Tooltip} from "antd";
+import "components/Header/override.scss";
 
 const Header = ({ onSetMonth, currentMonth }) => {
   const handleChange = (date) => {
@@ -11,15 +14,25 @@ const Header = ({ onSetMonth, currentMonth }) => {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <h1 className={styles.heading}>{currentMonth}</h1>
-      <DatePicker picker="month" allowClear={false} onChange={handleChange} />
+    <div className={styles.wrapper} id="monthPicker">
+
+      <CalendarOutlined className={styles.icon}/>
+      <Tooltip title="Select month" color="blue">
+      <DatePicker
+        picker="month"
+        allowClear={false}
+        defaultValue={currentMonth}
+        onChange={handleChange}
+        format={"MMMM YYYY"}
+        suffixIcon={null}
+      />
+      </Tooltip>
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  currentMonth: getCurrentMonthName(state),
+  currentMonth: getCurrentMonthStart(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

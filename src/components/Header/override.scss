@@ -1,0 +1,25 @@
+@import "assets/styles/variables";
+
+#monthPicker {
+  .ant-picker {
+    border: none;
+    background: transparent;
+    width: 9em;
+  }
+
+  .ant-picker {
+    font-size: 2em;
+  }
+
+  .ant-picker-input > input {
+    font-weight: bold;
+    color: $primary-blue;
+    font-size: inherit;
+    transition: color 0.2s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      color: lighten($primary-blue, 10%);
+    }
+  }
+}

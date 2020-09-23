@@ -11,8 +11,7 @@ export const getLoadingState = (state, key) => state[key].isLoading;
 export const getIsEmpty = (state, key) =>
   state[key].isLoadingFinished && isEmpty(state[key].data);
 
-export const getCurrentMonthName = (state) =>
-  dayjs(state.currentMonth.start).format("MMMM");
+export const getCurrentMonthStart = (state) => state.currentMonth.start;
 
 export const getSortedExpenses = createSelector(_getExpenses, (data) => {
   const arr = Object.entries(data).map(([id, details]) => ({

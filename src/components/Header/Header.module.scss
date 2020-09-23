@@ -2,13 +2,12 @@
 
 .wrapper {
   display: flex;
-  height: 5em;
-  flex-grow: 1;
-  align-items: flex-start;
-  flex-direction: column;
+  align-items: center;
+  margin-bottom:2em;
 }
 
-.heading {
-  color: $primary-blue;
-  font-weight: bold;
+.icon {
+  margin: auto 0;
+  font-size: 2em;
+  color: $text-light;
 }
