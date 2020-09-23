@@ -4,8 +4,8 @@ import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 
 export const getMonthBoundary = (date) => {
-  const start = dayjs(date).utc().startOf("month").unix();
-  const end = dayjs(date).endOf("month").unix();
+  const start = dayjs(date).startOf("month");
+  const end = dayjs(date).endOf("month");
 
   return {
     start,

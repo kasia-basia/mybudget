@@ -4,22 +4,24 @@ import { message } from "antd";
 import { getMonthBoundary } from "utils/dateHelpers";
 
 export const fetchExpenses = (startDate, endDate) => (dispatch) => {
-  console.log(startDate, endDate);
   dispatch({
     type: c.FETCH_EXPENSES,
   });
   const db = firebase.firestore();
   const docRef = db
     .collection("expenses")
-    .where("timestamp", ">", startDate)
-    .where("timestamp", "<", endDate);
+    .where("timestamp", ">", startDate.toDate())
+    .where("timestamp", "<", endDate.toDate());
 
   docRef
     .get()
     .then((querySnapshot) => {
       const result = {};
       querySnapshot.forEach(function (doc) {
-        result[doc.id] = doc.data();
+        result[doc.id] = {
+          ...doc.data(),
+          timestamp: doc.data().timestamp.toDate(),
+        };
       });
       dispatch({
         type: c.FETCH_EXPENSES_SUCCESS,
@@ -46,9 +48,10 @@ export const fetchCosts = () => (dispatch) => {
     .then((data) => {
       const result = {};
       data.docs.forEach((doc) => {
-        const data = doc.data();
-        const id = doc.id;
-        result[id] = data;
+        result[doc.id] = {
+          ...doc.data(),
+          dueDate: doc.data().dueDate.toDate(),
+        };
       });
       dispatch({
         type: c.FETCH_FIXED_COSTS_SUCCESS,

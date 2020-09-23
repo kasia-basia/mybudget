@@ -15,7 +15,7 @@ export const TableRowHeader = () => (
 
 export const TableRow = ({ rowData, editFixedCost }) => {
   const { name, amount, dueDate, paid, id } = rowData;
-  const formattedDate = dayjs.unix(dueDate).format("D.M");
+  const formattedDate = dayjs(dueDate).format("D.M");
   const cx = classNames.bind(styles);
 
   return (

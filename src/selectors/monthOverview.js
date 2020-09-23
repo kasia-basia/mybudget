@@ -12,7 +12,7 @@ export const getIsEmpty = (state, key) =>
   state[key].isLoadingFinished && isEmpty(state[key].data);
 
 export const getCurrentMonthName = (state) =>
-  dayjs.unix(state.currentMonth.start).format("MMMM");
+  dayjs(state.currentMonth.start).format("MMMM");
 
 export const getSortedExpenses = createSelector(_getExpenses, (data) => {
   const arr = Object.entries(data).map(([id, details]) => ({
@@ -27,7 +27,7 @@ export const getSortedExpenses = createSelector(_getExpenses, (data) => {
 export const getExpensesByDay = createSelector(getSortedExpenses, (data) => {
   let result = {};
   data.forEach((el) => {
-    const date = dayjs.unix(el.timestamp).startOf("day");
+    const date = dayjs(el.timestamp).startOf("day");
     if (result[date]) {
       result[date].push(el);
     } else {

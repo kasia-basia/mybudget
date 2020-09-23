@@ -12,10 +12,9 @@ import { getCategoriesOptions } from "selectors/categories";
 const AddExpensesModal = ({ setShow, onAddExpense, categoryOptions, show }) => {
   const { handleSubmit, errors, control } = useForm();
   const onSubmit = (data) => {
-    data.timestamp = dayjs(data.timestamp).unix().toString();
+    data.timestamp = dayjs(data.timestamp).toDate();
     onAddExpense(data);
     setShow(false);
-    console.log(data);
   };
 
   return (
