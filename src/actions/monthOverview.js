@@ -149,6 +149,7 @@ export const editExpense = (id, field, newValue) => (dispatch) => {
   dispatch({
     type: c.EDIT_EXPENSE,
   });
+  console.log(newValue, typeof newValue);
 
   const db = firebase.firestore();
   const docRef = db.collection("expenses");

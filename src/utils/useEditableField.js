@@ -16,9 +16,11 @@ const useEditableField = (initialValue, name, id, isNumerical = false) => {
         message.warn("Please input a numerical value", 2);
       } else {
         // Make sure numerical values always are formatted with dot, not comma
-        const val = isNumerical ? value.toString().replace(/,/g, ".") : value;
+        const val = isNumerical
+          ? parseFloat(value.replace(/,/g, "."))
+          : value;
         setValue(val);
-        dispatch(editExpense(id, name, value));
+        dispatch(editExpense(id, name, val));
       }
     }
   };
