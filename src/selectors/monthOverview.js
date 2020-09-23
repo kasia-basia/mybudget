@@ -3,7 +3,7 @@ import { createSelector } from "reselect";
 import { isEmpty } from "utils/utils";
 
 const _getExpenses = (state) => state.expenses.data;
-const _getFixedCosts = (state) => state.fixedCosts.data;
+const _getBills = (state) => state.bills.data;
 
 export const getCurrentMonth = (state) => state.currentMonth;
 export const getLoadingState = (state, key) => state[key].isLoading;
@@ -36,7 +36,7 @@ export const getExpensesByDay = createSelector(getSortedExpenses, (data) => {
   return result;
 });
 
-export const getSortedFixedCosts = createSelector(_getFixedCosts, (data) => {
+export const getSortedBills = createSelector(_getBills, (data) => {
   const arr = Object.entries(data).map(([id, details]) => {
     return { id, ...details };
   });
@@ -45,14 +45,14 @@ export const getSortedFixedCosts = createSelector(_getFixedCosts, (data) => {
   );
 });
 
-export const getFixedCostsTotal = createSelector(_getFixedCosts, (data) => {
+export const getBillsTotal = createSelector(_getBills, (data) => {
   if (!isEmpty(data)) {
     return Object.values(data).reduce((a, b) => a + (b["amount"] || 0), 0);
   }
   return null;
 });
 
-export const getFixedCostsPaid = createSelector(_getFixedCosts, (data) => {
+export const getBillsPaid = createSelector(_getBills, (data) => {
   if (!isEmpty(data)) {
     return Object.values(data)
       .filter((el) => el.paid)

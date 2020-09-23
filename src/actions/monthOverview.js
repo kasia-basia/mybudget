@@ -38,10 +38,10 @@ export const fetchExpenses = (startDate, endDate) => (dispatch) => {
 
 export const fetchCosts = () => (dispatch) => {
   dispatch({
-    type: c.FETCH_FIXED_COSTS,
+    type: c.FETCH_BILLS,
   });
   const db = firebase.firestore();
-  const docRef = db.collection("fixedCosts");
+  const docRef = db.collection("bills");
 
   docRef
     .get()
@@ -54,38 +54,38 @@ export const fetchCosts = () => (dispatch) => {
         };
       });
       dispatch({
-        type: c.FETCH_FIXED_COSTS_SUCCESS,
+        type: c.FETCH_BILLS_SUCCESS,
         payload: result,
       });
     })
     .catch((error) => {
       dispatch({
-        type: c.FETCH_FIXED_COSTS_ERROR,
+        type: c.FETCH_BILLS_ERROR,
         payload: error,
       });
     });
 };
 
-export const editFixedCost = (id, newData = {}) => (dispatch) => {
+export const editBill = (id, newData = {}) => (dispatch) => {
   dispatch({
-    type: c.EDIT_FIXED_COST,
+    type: c.EDIT_BILL,
   });
   const db = firebase.firestore();
-  const docRef = db.collection("fixedCosts");
+  const docRef = db.collection("bills");
   console.log(newData);
   docRef
     .doc(id)
     .update(newData)
     .then((data) => {
       dispatch({
-        type: c.EDIT_FIXED_COST_SUCCESS,
+        type: c.EDIT_BILL_SUCCESS,
         payload: { id, newData },
       });
       message.success("Saved", 2);
     })
     .catch((error) => {
       dispatch({
-        type: c.EDIT_FIXED_COST_ERROR,
+        type: c.EDIT_BILL_ERROR,
         payload: error,
       });
     });

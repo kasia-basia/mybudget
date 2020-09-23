@@ -1,7 +1,7 @@
 import * as c from "constants/monthOverwiew";
 import { combineReducers } from "redux";
 import { SET_MONTH } from "constants/monthOverwiew";
-import {getMonthBoundary} from "utils/dateHelpers";
+import { getMonthBoundary } from "utils/dateHelpers";
 
 const loadingReducer = (prefix, initialState) => (
   state = initialState,
@@ -38,11 +38,8 @@ const createLoadingFinishedReducer = (prefix) => loadingFinishedReducer(prefix);
 const expensesLoading = createLoadingReducer(c.FETCH_EXPENSES, false);
 const expensesLoadingFinished = createLoadingFinishedReducer(c.FETCH_EXPENSES);
 
-const fixedCostsLoading = createLoadingReducer(c.FETCH_FIXED_COSTS, false);
-const fixedCostsLoadingFinished = createLoadingFinishedReducer(
-  c.FETCH_FIXED_COSTS,
-  false
-);
+const billsLoading = createLoadingReducer(c.FETCH_BILLS, false);
+const billsLoadingFinished = createLoadingFinishedReducer(c.FETCH_BILLS, false);
 
 const expensesData = (state = {}, action) => {
   switch (action.type) {
@@ -73,13 +70,13 @@ const expensesData = (state = {}, action) => {
   }
 };
 
-const fixedCostsData = (state = [], action) => {
+const billsData = (state = [], action) => {
   switch (action.type) {
-    case c.FETCH_FIXED_COSTS:
+    case c.FETCH_BILLS:
       return [];
-    case c.FETCH_FIXED_COSTS_SUCCESS:
+    case c.FETCH_BILLS_SUCCESS:
       return action.payload;
-    case c.EDIT_FIXED_COST_SUCCESS:
+    case c.EDIT_BILL_SUCCESS:
       const newState = { ...state };
       newState[action.payload.id] = {
         ...state[action.payload.id],
@@ -102,10 +99,10 @@ export const currentMonth = (state = initialMonth, action) => {
   }
 };
 
-export const fixedCosts = combineReducers({
-  data: fixedCostsData,
-  isLoading: fixedCostsLoading,
-  isLoadingFinished: fixedCostsLoadingFinished,
+export const bills = combineReducers({
+  data: billsData,
+  isLoading: billsLoading,
+  isLoadingFinished: billsLoadingFinished,
 });
 
 export const expenses = combineReducers({

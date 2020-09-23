@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import {
   TableRow,
   TableRowHeader,
-} from "components/FixedCostsPanel/TableRow/TableRow";
-import styles from "./FixedCostsTable.module.scss";
+} from "components/BillsPanel/TableRow/TableRow";
+import styles from "components/BillsPanel/BillsTable/BillsTable.module.scss";
 import { isEmpty } from "utils/utils";
 import { Empty } from "antd";
 
-const FixedCostsTable = ({ data, editFixedCost }) => {
+const BillsTable = ({ data, editBill }) => {
   return (
     <div className={styles.wrapper}>
       <TableRowHeader />
@@ -16,15 +16,15 @@ const FixedCostsTable = ({ data, editFixedCost }) => {
         <Empty />
       ) : (
         data.map((el) => (
-          <TableRow rowData={el} key={el.id} editFixedCost={editFixedCost} />
+          <TableRow rowData={el} key={el.id} editBill={editBill} />
         ))
       )}
     </div>
   );
 };
 
-FixedCostsTable.propTypes = {
+BillsTable.propTypes = {
   setBillStatus: PropTypes.func,
 };
 
-export default FixedCostsTable;
+export default BillsTable;

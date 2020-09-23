@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./FixedCostsSummary.module.scss";
+import styles from "components/BillsPanel/BillsSummary/BillsSummary.module.scss";
 import ProgressBar from "components/ProgressBar/ProgressBar";
 
-const FixedCostsSummary = ({ paid, total }) => {
+const BillsSummary = ({ paid, total }) => {
   const percentage = (paid / total) * 100 || 0;
   return (
     <div className={styles.wrapper}>
@@ -20,9 +20,9 @@ const FixedCostsSummary = ({ paid, total }) => {
   );
 };
 
-FixedCostsSummary.propTypes = {
+BillsSummary.propTypes = {
   paid: PropTypes.number,
   total: PropTypes.number,
 };
 
-export default FixedCostsSummary;
+export default BillsSummary;

@@ -13,7 +13,7 @@ export const TableRowHeader = () => (
   </div>
 );
 
-export const TableRow = ({ rowData, editFixedCost }) => {
+export const TableRow = ({ rowData, editBill }) => {
   const { name, amount, dueDate, paid, id } = rowData;
   const formattedDate = dayjs(dueDate).format("D.M");
   const cx = classNames.bind(styles);
@@ -27,7 +27,7 @@ export const TableRow = ({ rowData, editFixedCost }) => {
         <Switch
           checked={paid}
           size="small"
-          onClick={() => editFixedCost(id, { paid: !paid })}
+          onClick={() => editBill(id, { paid: !paid })}
         />
       </div>
     </div>
