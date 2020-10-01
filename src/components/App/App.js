@@ -5,6 +5,7 @@ import Sidebar from "components/Sidebar/Sidebar";
 import MonthlyExpensesPage from "components/MonthlyExpensesPage/MonthlyExpensesPage";
 import MonthSummaryPage from "components/MonthSummaryPage/MonthSummaryPage";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { getMonthUrl } from "utils/dateHelpers";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <div className={styles.content}>
           <Switch>
             <Route exact path="/">
-              <Redirect to="/dashboard" />
+              <Redirect to={getMonthUrl()} />
             </Route>
             <Route path="/:month">
               <MonthlyExpensesPage />
