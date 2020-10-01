@@ -19,6 +19,7 @@ const AddExpensesModal = ({ setShow, onAddExpense, categoryOptions, show }) => {
 
   return (
     <Modal
+      destroyOnClose
       visible={show}
       closable={false}
       onOk={handleSubmit(onSubmit)}

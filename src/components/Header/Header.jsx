@@ -15,7 +15,6 @@ const Header = ({ onSetMonth, currentMonth }) => {
 
   return (
     <div className={styles.wrapper} id="monthPicker">
-
       <CalendarOutlined className={styles.icon}/>
       <Tooltip title="Select month" color="blue">
       <DatePicker

@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch } from "antd";
+import { Switch, Tooltip } from "antd";
 import classNames from "classnames/bind";
 import dayjs from "dayjs";
 import styles from "./TableRow.module.scss";
@@ -15,7 +15,7 @@ export const TableRowHeader = () => (
 
 export const TableRow = ({ rowData, editBill }) => {
   const { name, amount, dueDate, paid, id } = rowData;
-  const formattedDate = dayjs(dueDate).format("D.M");
+  const formattedDate = dayjs(dueDate).format("D.MM");
   const cx = classNames.bind(styles);
 
   return (
@@ -24,11 +24,13 @@ export const TableRow = ({ rowData, editBill }) => {
       <div className={styles.amount}> {amount} PLN</div>
       <div className={styles.due}> {formattedDate} </div>
       <div className={styles.paid}>
-        <Switch
-          checked={paid}
-          size="small"
-          onClick={() => editBill(id, { paid: !paid })}
-        />
+        <Tooltip title={!paid ? "Mark as paid" : ""} color={"blue"}>
+          <Switch
+            checked={paid}
+            size="small"
+            onClick={() => editBill(id, { paid: !paid })}
+          />
+        </Tooltip>
       </div>
     </div>
   );

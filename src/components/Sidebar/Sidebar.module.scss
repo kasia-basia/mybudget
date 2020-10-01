@@ -5,21 +5,16 @@
   background: white;
   height: 100vh;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   padding: 2.5em 0;
   position: fixed;
 }
 
-.dot {
-  border-radius: 100%;
-  background: $primary-blue;
-  width: 1.2em;
-  height: 1.2em;
-  margin: 0.75em 0;
-}
-
-.dot:nth-child(2) {
-  background: $primary-blue;
+.active {
+  button,
+  button:focus {
+    background: $orange;
+    border-color: $orange;
+  }
 }

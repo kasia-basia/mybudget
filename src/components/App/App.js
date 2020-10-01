@@ -2,24 +2,33 @@ import React from "react";
 import "assets/styles/index.scss";
 import styles from "components/App/App.module.scss";
 import Sidebar from "components/Sidebar/Sidebar";
-import ExpensesPanel from "components/ExpensesPanel/ExpensesPanel";
-import Header from "components/Header/Header";
-import BillsPanel from "components/BillsPanel/BillsPanel";
+import MonthlyExpensesPage from "components/MonthlyExpensesPage/MonthlyExpensesPage";
+import MonthSummaryPage from "components/MonthSummaryPage/MonthSummaryPage";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 function App() {
   return (
-    <div className={styles.wrapper}>
-      <Sidebar />
-      <div className={styles.content}>
-        <div className={styles.contentLeft}>
-          <Header />
-          <BillsPanel />
-        </div>
-        <div className={styles.contentRight}>
-          <ExpensesPanel />
+    <BrowserRouter>
+      <div className={styles.wrapper}>
+        <Sidebar />
+        <div className={styles.content}>
+          <Switch>
+            <Route exact path="/">
+              <Redirect to="/dashboard" />
+            </Route>
+            <Route path="/:month">
+              <MonthlyExpensesPage />
+            </Route>
+            <Route path="/summary">
+              <MonthSummaryPage />
+            </Route>
+            <Route path="*">
+              <div>Not found</div>
+            </Route>
+          </Switch>
         </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 

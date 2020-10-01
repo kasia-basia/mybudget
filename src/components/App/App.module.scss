@@ -16,26 +16,3 @@
     padding: 1.5em;
   }
 }
-
-.contentLeft {
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-}
-
-.contentRight {
-  display: flex;
-  width: 55%;
-
-  @media #{$tablet} {
-    margin-top: 2em;
-    margin-bottom: 2em;
-  }
-}
-
-.contentLeft,
-.contentRight {
-  @media #{$tablet} {
-    width: 100%;
-  }
-}
